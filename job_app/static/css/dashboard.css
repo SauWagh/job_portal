@@ -1,0 +1,321 @@
+    .create-resume {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    border: 1px solid;
+}
+
+
+.create-resume img {
+    width: 95%;
+    border-radius: 10px;
+    position: absolute;
+    left: 2.5%;
+    bottom: 0.7%;
+    border: 3px solid black;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+    text-shadow: 2px 2px 5px black;
+    left: 50%;
+}
+.job-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.see_all {
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.see_all:hover {
+    text-decoration: none;
+    cursor: pointer;
+    transform: scale(1.2);
+    color: white;
+}
+
+.text-overlay h4 {
+    font-size: 35px;
+    animation: bounceFade 2s ease-in-out infinite, colorChange 3s infinite alternate;
+}
+
+@keyframes bounceFade {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-10px);
+        opacity: 0.8;
+    }
+}
+.create-resume {
+    position: relative;
+    display: inline-block; 
+}
+
+.job-pop{
+    display:flex; 
+    gap:10px; 
+    overflow-x:scroll; 
+    scrollbar-width: none; 
+    padding:23px 0
+}
+
+.create-resume .resume {
+    position: absolute;
+    bottom: 20px; 
+    left: 50%;          
+    transform: translateX(-50%);
+    padding: 12px 25px;
+    border-radius: 30px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    text-align: center;
+    transition: background 0.3s, transform 0.3s;
+}
+.create-resume .resume:hover {
+    background-color: #ffffff;
+    color: #007bff;
+    transform: translateX(-50%) scale(1.05);
+}
+
+
+.create-resume .resume:hover {
+    background-color: #ffffff;
+    transform: translateX(-50%) scale(1.05);
+}
+.job-pop .job-win {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: inline-block;
+    transform-origin: center;
+}
+
+.job-pop .job-win:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    z-index: 10;
+}
+
+.job-win{
+    flex:0 0 auto; 
+    width:250px;
+    height: 300px; 
+    background:#333; 
+    color:white; 
+    text-decoration:none; 
+    padding:15px; 
+    border-radius:10px;
+      position: relative;
+  z-index: 1;
+}
+.job-win:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+    z-index: 10;
+}
+.dash a h5 {
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-size: 148%;
+    font-weight: bold;
+}
+
+.dash a h5::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transform: scaleX(1);
+    transition: transform 0.3s ease;
+    transform-origin: right;
+}
+
+.dash a h5:hover::after {
+    transform: scaleX(0);
+    transform-origin: left;
+    text-decoration: none;
+}
+
+
+.option{
+    position: relative;
+    top: 30%;
+}
+.option a{
+    color: white;
+    text-decoration: none;
+    display: flex;
+    font-size: 110%;
+}
+.option a:hover{
+    cursor: pointer;
+    font-size: 130%;
+    text-shadow: 0px 1px 0px;
+    transition:font-size 0.3s , ease;
+}
+
+.option form .logout-link {
+    background: none;
+    border: none;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    font-size: 110%;
+}
+
+.option form .logout-link:hover {
+     cursor: pointer;
+    font-size: 125%;
+    text-shadow: 0px 1px 0px;
+    transition:font-size 0.3s , ease;
+}
+
+.resume-points {
+    font-size: 16px;
+    color: #222;
+    max-width: 500px; 
+    margin-left: 20px; 
+}
+.btn-create-resume {
+    display: inline-block;
+    font-size: 16px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    background: rgba(31, 139, 255, 0.8);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    left: 85%;
+    top: 156px;
+}
+.btn-create-resume:hover {
+    color: #ffffff;
+    transform: scale(1.05);
+    text-decoration: none;
+}
+.resume-points ul {
+    list-style: none;
+    padding-left: 20px;
+    position: absolute;
+    left: -50%;
+    margin: 0;
+    top: 38%;
+}
+
+.resume-points li {
+    text-align: left;
+    margin: 10px 0;
+    padding: 5px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resume-points li:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}   
+.gradient-bar {
+    width: var(--progress);
+    background: linear-gradient(to right, rgb(255, 55, 0), yellow, rgb(0, 255, 153));
+    color: black;    
+    text-align: center;  
+    height: 100%;           
+    line-height: 25px;  
+}
+
+.work-people.create-resume {
+    position: relative;
+    overflow: hidden;
+}
+
+.community-points {
+    position: absolute;
+    top: 14px;   
+    left: 10%;    
+    color: rgb(0, 0, 0);
+    z-index: 10;
+    max-width: 80%;
+    text-shadow: 1px 1px 5px black;
+}
+.community-points ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 15px;
+}
+.community-points li {
+    text-align: left;
+    margin: 10px 0;
+    padding: 5px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, 
+    box-shadow 0.2s ease;
+}
+.community-points li:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.community-points .community_btn a {
+    display: inline-block;
+    font-size: 16px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    background: rgba(31, 139, 255, 0.8);
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: absolute;
+    left: 113%; 
+    bottom: 10px;
+}
+
+
+.community-points .community_btn a:hover {
+    color: #ffffff;
+    transform: scale(1.05);
+    text-decoration: none;
+}
+.save {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    cursor: pointer;
+}
+
+.save:hover {
+    transform: scale(1.2);  /* Slightly enlarges on hover */
+    opacity: 0.8;           /* Slight transparency */
+}
+.save-btn:active .save-icon {
+    transform: scale(1.4);
+    transition: transform 0.1s;
+}

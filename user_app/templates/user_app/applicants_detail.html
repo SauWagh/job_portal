@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Applicant Profile</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 40%;
+            margin: 90px auto;
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid;
+            position: relative;
+            right: 10%;
+            box-shadow: 1px 2px 3px rgba(212, 212, 212, 0.808);
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #00ffff;
+        }
+
+        p {
+            margin: 8px 0;
+        }
+
+        a {
+            color: #00bfff;
+            text-decoration: none;
+        }
+
+    a:hover, .tooltip-link:hover {
+    text-decoration: underline;    
+    color: #00ffff;               
+    font-size: 110%;     
+    transform: scale(1.05);       
+    }
+    .tooltip-link {
+        color: inherit; 
+        text-decoration: none;         
+        cursor: default; 
+        position: relative;
+    }
+
+    .tooltip-link::after {
+        content: attr(title);
+        position: absolute;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #333;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        white-space: nowrap;
+        font-size: 12px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s;
+        z-index: 10;
+    }
+    a, .tooltip-link {
+    color: #00bfff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+    .tooltip-link:hover::after {
+        opacity: 1;
+    }
+        /* Full screen particle background */
+.animated-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0b0b0b;
+    z-index: -1;
+    overflow: hidden;
+}
+
+/* Create particles */
+.animated-bg::before,
+.animated-bg::after {
+    content: '';
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,191,255,0.2) 1px, transparent 1px);
+    background-size: 40px 40px;
+    animation: moveParticles 20s linear infinite;
+}
+
+.animated-bg::after {
+    animation-direction: reverse;
+    opacity: 0.5;
+}
+
+/* Particle animation */
+@keyframes moveParticles {
+    0% { transform: translate(0,0); }
+    100% { transform: translate(-50%, -50%); }
+}
+
+/* Panel styling */
+.container {
+    max-width: 40%;
+    margin: 90px auto;
+    background-color: rgba(30, 30, 30, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 0 15px rgba(0,191,255,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+/* Panel hover effect */
+.container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 30px rgba(0,191,255,0.8);
+}
+
+/* Profile pic hover animation */
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid #00bfff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.05) rotate(5deg);
+    box-shadow: 0 0 20px #00bfff;
+}
+.status_btn{
+    display: grid;
+    gap: 20%;
+    border: 1px solid;
+    width: 20%;
+    height: 230px;
+    position: relative;
+    left: 33%;
+    bottom: 600px;
+    padding: 30px;
+    align-items: center;
+    justify-content: flex-end;
+}
+.status{
+    width: 100%;
+
+}
+.status-badge {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  gap: 6px;
+}
+
+.status-badge .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.accepted .dot {
+  background-color: green;
+}
+
+.rejected .dot {
+  background-color: red;
+}
+
+.pending .dot {
+  background-color: orange;
+}
+
+    </style>
+</head>
+ <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(18, 18, 18, 0.7);">
+      <a class="navbar-brand" href="#">JobPortal</a>
+
+      <!-- Mobile Toggle -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Content -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <!-- Left Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/list/">Jobs</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/emp_pj/">Employers/Post Job</a></li>
+        </ul>
+
+        <!-- Right Buttons -->
+        <div class="form-inline my-2 my-lg-0">
+          <!-- <a href="/login/" class="btn btn-outline-light mr-2">User Login</a> -->
+          <a href="/register/" class="btn btn-light">Register</a>
+          {% if user.is_authenticated %}
+              <div class="profile-icon">
+                  <a href="{% url 'dashboard' %}">
+                      {% if profile and profile.profile_picture %}
+                          <img src="{{ profile.profile_picture.url }}" 
+                               alt="Profile Picture"
+                               class="rounded-circle"
+                               style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
+                      {% else %}
+                          
+                          <img src="{% static 'images/user.png' %}" 
+                               alt="Profile"
+                               style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
+                      {% endif %}
+                  </a>
+              </div>
+          {% else %}
+              <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">
+                  Login
+              </button>
+          {% endif %}
+
+        </div>
+      </div>
+    </nav>
+<body>
+    <!-- <div class="animated-bg"> -->
+    <div class="container">
+        {% if applicant_profile and applicant_profile.profile_picture %}
+            <img src="{{ applicant_profile.profile_picture.url }}" alt="Profile Picture" class="profile-pic" style="border: 2px solid white;">
+        {% else %}
+            <img src="{% static 'images/profile-picture.png' %}" alt="Default Avatar" class="profile-pic">
+        {% endif %}
+
+        <h2>{{ applicant_profile.full_name }}</h2>
+        <p><strong>📤Email: </strong> {{ applicant_profile.user.email }}</p>
+        <p><strong>☎️Phone: </strong> {{ applicant_profile.phone_number }}</p>
+        <p><strong>💡Experience: </strong> {{ applicant_profile.experience_years }} years</p>
+        <p><strong>🎓Education: </strong> {{ applicant_profile.highest_education }}</p>
+        <p><strong>👨🏼‍💻Skills: </strong> {{ applicant_profile.skills }}</p>
+        <p><strong>🎂Date Of Birth: </strong>{{ applicant_profile.date_of_birth}}</p>
+        {% if applicant_profile.gender == "Male" %}
+            <p><strong>♂️Gender: </strong> {{ applicant_profile.gender }}</p>
+        {% elif applicant_profile.gender == "Female" %}
+            <p><strong>♀️Gender: </strong> {{ applicant_profile.gender }}</p>
+        {% else %}
+            <p><strong>⚧Gender: </strong> {{ applicant_profile.gender }}</p>
+        {% endif %}
+
+        <p><strong>ℹ️LinkedIn: </strong>
+            <a href="{{ applicant_profile.linkedin_profile }}" target="_blank" class="tooltip-link" title="Go to LinkedIn Profile">
+                LinkedIn Profile
+            </a>
+        </p>
+
+        <p><strong>🌐Portfolio: </strong>
+            <a href="{{ applicant_profile.portfolio_link }}" target="_blank" class="tooltip-link" title="View Portfolio">
+                See Portfolio
+            </a>
+        </p>
+
+        <p><strong>👨🏻‍💻Projects: </strong>
+            <a href="{{ applicant_profile.project_link }}" target="_blank" class="tooltip-link" title="View Projects">
+                Visit Projects
+            </a>
+        </p>
+
+
+        {% if applicant_profile.resume_upload %}
+            <p><strong>📄Resume: </strong> <a href="{{ applicant_profile.resume_upload.url }}" target="_blank" class="tooltip-link" title="Download Resume">Download Resume</a></p>
+        {% endif %}
+
+        
+    </div>
+    <div class="status_btn" style="display: grid; border-radius: 15px; ">
+
+<div class="applicant-detail">
+    <h2>{{ applicant_profile.user.username }}</h2>
+    <p>Email: {{ applicant_profile.user.email }}</p>
+    <p>Applied On: {{ application.applied_for }}</p>
+
+    <div class="status-container">
+        {% if application.profile_status == "Pending" %}
+            <a href="{% url 'update_application' application.id 'Accepted' %}" class="btn btn-success btn-sm">Accept</a>
+            <a href="{% url 'update_application' application.id 'Rejected' %}" class="btn btn-danger btn-sm">Reject</a>
+        {% elif application.profile_status == "Accepted" %}
+            <span class="status-badge accepted"><span class="dot"></span> Accepted</span>
+        {% elif application.profile_status == "Rejected" %}
+            <span class="status-badge rejected"><span class="dot"></span> Rejected</span>
+        {% endif %}
+    </div>
+</div>
+
+
+
+
+    </div>
+</div>
+</div>
+</body>
+</html>

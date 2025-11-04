@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ resume.full_name }} - Resume</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/resume_preview3.css' %}">
+</head>
+<style>
+        #resume {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 10mm;
+  margin: 0;
+  background: white;
+  box-sizing: border-box;
+}
+</style>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<div class="cv-container" id="resume">
+
+    <!-- Sidebar -->
+    <aside class="cv-sidebar">
+        <div class="cv-profile-pic">
+            {% if resume.profile_pic %}
+                <img src="{{ resume.profile_pic.url }}?{{ profile.updated_at.timestamp }}" alt="Profile Photo">
+            {% else %}
+                <img src="{% static 'images/profile.jpg' %}" alt="Profile Photo">
+            {% endif %}
+        </div>
+        <h1 class="cv-name">{{ resume.full_name }}</h1>
+        <h2 class="cv-title">{{ resume.job_title }}</h2>
+
+        <div class="cv-contact">
+            {% if resume.phone %}<p>📞 {{ resume.phone }}</p>{% endif %}
+            {% if resume.email %}<p>✉️ {{ resume.email }}</p>{% endif %}
+            {% if resume.address %}<p>📍 {{ resume.address }}</p>{% endif %}
+            {% if resume.website %}<p>🌐 {{ resume.website }}</p>{% endif %}
+        </div>
+
+        <h3>Skills</h3>
+        <div class="cv-skills">
+            {% for skill in skills %}
+                <div class="cv-skill">
+                    <span>{{ skill.skill }}</span>
+                    <div class="cv-skill-bar">
+                        <div class="cv-skill-progress"></div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No skills added.</p>
+            {% endfor %}
+        </div>
+
+        <h3>Languages</h3>
+        <ul>
+            {% for lang in languages %}
+                <li>{{ lang.language }} ({{ lang.proficiency }})</li>
+            {% empty %}
+                <li>No languages added.</li>
+            {% endfor %}
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="cv-main">
+
+        {% if education %}
+        <section class="cv-section">
+            <h3 class="cv-heading">EDUCATION</h3>
+            {% for edu in education %}
+            <div class="cv-item">
+                <div class="cv-item-left">
+                    <p>{{ edu.start_date }} – {{ edu.end_date|default:"Present" }}</p>
+                    <p>{{ edu.institution }}</p>
+                </div>
+                <div class="cv-item-right">
+                    <h4>{{ edu.degree }}</h4>
+                    <p>{{ edu.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if experience %}
+        <section class="cv-section">
+            <h3 class="cv-heading">EXPERIENCE</h3>
+            {% for exp in experience %}
+            <div class="cv-item">
+                <div class="cv-item-left">
+                    <p>{{ exp.start_date }} – {{ exp.end_date|default:"Present" }}</p>
+                    <p>{{ exp.company }}</p>
+                </div>
+                <div class="cv-item-right">
+                    <h4>{{ exp.role }}</h4>
+                    <p>{{ exp.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if projects %}
+        <section class="cv-section">
+            <h3 class="cv-heading">PROJECTS</h3>
+            {% for proj in projects %}
+            <div class="cv-item">
+                <div class="cv-item-left">
+                    <p>{{ proj.technologies }}</p>
+                </div>
+                <div class="cv-item-right">
+                    <h4>{{ proj.title }}</h4>
+                    <p>{{ proj.description }}</p>
+                    {% if proj.link %}<a href="{{ proj.link }}" target="_blank">{{ proj.link }}</a>{% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if certifications %}
+        <section class="cv-section">
+            <h3 class="cv-heading">CERTIFICATIONS</h3>
+            {% for cer in certifications %}
+            <div class="cv-item">
+                <div class="cv-item-left">
+                    <p>{{ cer.issue_date|date:"Y" }}</p>
+                </div>
+                <div class="cv-item-right">
+                    <h4>{{ cer.name }}</h4>
+                    <p>{{ cer.organization }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </section>
+        {% endif %}
+
+        {% if achievements %}
+        <section class="cv-section">
+            <h3 class="cv-heading">ACHIEVEMENTS</h3>
+            <ul>
+            {% for ach in achievements %}
+                <li>{{ ach.title }} – {{ ach.description }}</li>
+            {% empty %}
+                <li>No achievements added.</li>
+            {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+        {% if publications %}
+        <section class="cv-section">
+            <h3 class="cv-heading">PUBLICATIONS</h3>
+            <ul>
+            {% for pub in publications %}
+                <li><strong>{{ pub.title }}</strong> – {{ pub.journal }} ({{ pub.date|date:"Y" }})</li>
+            {% empty %}
+                <li>No publications added.</li>
+            {% endfor %}
+            </ul>
+        </section>
+        {% endif %}
+
+    </main>
+</div>
+
+<!-- Download button -->
+<div class="text-center mt-4" style="padding-top: 2%;">
+    <button class="btn btn-primary" onclick="downloadResume()">Download Resume as PDF</button>
+</div>
+
+
+<script>
+function downloadResume() {
+  const element = document.getElementById("resume");
+  html2pdf()
+    .set({
+      margin: 0,
+      filename: '{{ resume.full_name|default:"My_Resume" }}.pdf',
+      html2canvas: { scale: 2, useCORS: true,scrollY:0 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    })
+    .from(element)
+    .save();
+}
+</script>
+
+</body>
+</html>

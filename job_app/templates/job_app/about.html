@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Portal Animation</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  
+  <!-- AOS CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      width: 90%;
+      margin: auto;
+      padding: 50px 0;
+    }
+
+    .section {
+      margin: 80px 0;
+    }
+
+    .content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .text {
+      flex: 1;
+      color: #fff;
+    }
+
+    .text h1, .text h2 {
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .about {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .image-about {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 12px;
+      transition: transform 0.4s ease-in-out;
+    }
+
+    /* Hover zoom effect */
+    .image-about:hover {
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #444;
+      padding: 20px 0;
+      color: #fff;
+      text-align: center;
+    }
+    footer a { color: #bbb; }
+    
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    margin-top: 10px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+  </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(18, 18, 18, 0.7);">
+      <a class="navbar-brand" href="#">JobPortal</a>
+
+      <!-- Mobile Toggle -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Content -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <!-- Left Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/list/">Jobs</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about/" style="text-decoration: underline; text-underline-offset: 20px; color: white;">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/emp_pj/">Employers/Post Job</a></li>
+        </ul>
+
+        <!-- Right Buttons -->
+        <div class="form-inline my-2 my-lg-0">
+          <!-- <a href="/login/" class="btn btn-outline-light mr-2">User Login</a> -->
+          <a href="/register/" class="btn btn-light">Register</a>
+          {% if user.is_authenticated %}
+              <div class="profile-icon">
+                  <a href="{% url 'dashboard' %}">
+                      {% if profile and profile.profile_picture %}
+                          <img src="{{ profile.profile_picture.url }}" 
+                               alt="Profile Picture"
+                               class="rounded-circle"
+                               style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
+                      {% else %}
+                          
+                          <img src="{% static 'images/user.png' %}" 
+                               alt="Profile"
+                               style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
+                      {% endif %}
+                  </a>
+              </div>
+          {% else %}
+              <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">
+                  Login
+              </button>
+          {% endif %}
+
+        </div>
+      </div>
+    </nav>
+
+  <div class="container">
+    <!-- Section 1 -->
+    <div class="section">
+      <div class="content">
+        <div class="text" data-aos="fade-right">
+          <h2>JobPortal</h2>
+          <p class="about">
+            JobPortal is the #1 job site and a global leader in job matching and hiring.
+            More people find jobs here because we put job seekers first—offering powerful 
+            tools to search jobs, post resumes, and more.
+          </p>
+        </div>
+        <div class="image" data-aos="fade-left">
+          <img class="image-about" src="https://cbx-prod.b-cdn.net/COLOURBOX63901732.jpg?width=800&height=800&quality=70" alt="Job Portal">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section">
+      <div class="content">
+        <div class="text" data-aos="fade-left">
+          <h1>Our Team</h1>
+          <p class="about">
+            At JobPortal, our employees are motivated by our mission to help all people get jobs. 
+            We’ve built a mission-driven, inclusive, and collaborative culture where employees 
+            around the world work together to improve the hiring journey.
+          </p>
+        </div>
+        <div class="image" data-aos="fade-right">
+          <img class="image-about" src="https://img.freepik.com/premium-vector/co-working-team_229548-1116.jpg" alt="Team">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section">
+      <div class="content">
+        <div class="text" data-aos="fade-right">
+          <h1>Our Leadership</h1>
+          <p class="about">
+            Our leadership team is diverse, dedicated, and committed to empowering our employees. 
+            By fostering strong partnerships, they support job seekers, employers, and society.
+          </p>
+        </div>
+        <div class="image" data-aos="fade-left">
+          <img class="image-about" src="https://static.vecteezy.com/system/resources/previews/013/976/430/non_2x/teamwork-concept-group-of-people-climbing-a-mountain-company-employees-working-together-mutual-achievement-of-the-goal-team-building-people-helping-and-supporting-each-other-at-work-vector.jpg" alt="Leadership">
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 4 -->
+    <div class="section">
+      <div class="content">
+        <div class="text" data-aos="fade-left">
+          <h1>Our Commitments</h1>
+          <p class="about">
+            We understand a job is more than a paycheck—it provides purpose and stability. 
+            That’s why we’re committed to connecting people with opportunities and shaping 
+            a future of work that’s inclusive and accessible to all.
+          </p>
+        </div>
+        <div class="image" data-aos="fade-right">
+          <img class="image-about" src="https://www.shutterstock.com/image-vector/group-different-occupations-standing-on-260nw-1805921272.jpg" alt="Commitments">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 JobPortal | <a href="#">Privacy</a> | <a href="#">Terms</a></p>
+  </footer>
+
+  <!-- AOS JS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1200,  // animation duration
+      once: true       // animate only once
+    });
+  </script>
+</body>
+</html>

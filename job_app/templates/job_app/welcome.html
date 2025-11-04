@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Welcome</title>
+  </head>
+  <body>
+    <h1>Welcome, to the job-portal {{ user.username }}!</h1>
+    <div class="container">
+        <div class="col-md-8">
+    {% for job in jobs %}
+      <div id="job{{ forloop.counter }}" class="job-details">
+        <h3>{{ job.job_title }}</h3>
+        <p><strong>Company:</strong> {{ job.company_name }}</p>
+        <p><strong>Location:</strong> {{ job.job_location }}</p>
+        <p><strong>Salary:</strong> {{ job.salary }}</p>
+        <hr>
+
+        {% if job.can_des %}
+          <p><strong>Experience:</strong> {{ job.can_des.min_experience }} - {{ job.can_des.max_experience }}</p>
+          <p><strong>Education:</strong> {{ job.can_des.education_required }}</p>
+          <p><strong>Skills:</strong> {{ job.can_des.skills_required }}</p>
+        {% endif %}
+
+        {% if job.job_des %}
+          <p><strong>Job Description:</strong> {{ job.job_des.job_description }}</p>
+          <p><strong>Requirement:</strong> {{ job.job_des.ideal_candidate_profile }}</p>
+          <p><strong>Applying Deadline:</strong> {{ job.job_des.application_deadline }}</p>
+        {% endif %}
+
+        {% if job.comm %}
+          <p><strong>Contact Email:</strong> {{ job.comm.contact_email }}</p>
+          <p><strong>Contact Number:</strong> {{ job.comm.contact_number }}</p>
+        {% endif %}
+
+        <a href="{% url 'user' %}" class="btn btn-sm btn-primary">Apply</a>
+      </div>
+    {% endfor %}
+  </div>
+  
+      <a style="color: lightgreen;" href="/forms/update/{{obj.id}}/" class="btn-link u">UPDATE EMPLOYEE+</a>
+      <a style="color: red;" href="/forms/delete/{{obj.id}}/" class="btn-link d">DELETE EMPLOYEE-</a>
+
+</div>
+    </div>
+  </body>
+</html>

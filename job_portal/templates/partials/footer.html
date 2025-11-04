@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <title>Document</title>
+</head>
+<body>
+  
+  <!-- Your Page Content -->
+  <div class="content">
+    <h1>Welcome to JobPortal</h1>
+    <p>This is your page content.</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer" style="border-top: 1px solid; width: 100%;">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="footer-links">
+            <li><a href="https://in.indeed.com/career-advice/career-development/career-advice">Career Advice</a></li>
+            <li><a href="https://in.indeed.com/browsejobs">Browse Jobs</a></li>
+            <li><a href="https://in.indeed.com/companies/browse-companies">Browse Companies</a></li>
+            <li><a href="#">Salaries</a></li>
+            <li><a href="https://www.indeedevents.com/en-in/">JobPortal Events</a></li>
+            <li><a href="https://in.indeed.com/cmp/indeed/about">Work at JobPortal</a></li>
+            <li><a href="https://in.indeed.com/worldwide">Countries</a></li>
+            <li><a href="https://in.indeed.com/about">About</a></li>
+            <li><a href="https://in.indeed.com/help">Help</a></li>
+            <li><a href="https://in.indeed.com/esg?from=gnav-homepage">ESG at JobPortal</a></li>
+            <li><a href="/list/">Safe Job Search</a></li>
+            <li><a href="/add/">Post a Job</a></li>
+          </ul>
+          <hr style="border-color: rgba(255,255,255,0.2);">
+          <p class="footer-bottom">
+            <a href="{% url 'user' %}">User</a> &nbsp; | &nbsp;
+            © 2025 JobPortal &nbsp; | &nbsp; 
+            <a href="#">Accessibility</a> &nbsp; | &nbsp; 
+            <a href="#">Privacy Centre & Ad Choices</a> &nbsp; | &nbsp; 
+            <a href="#">Terms</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

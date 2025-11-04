@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{{ resume.full_name }} - Resume</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/resume_preview.css' %}">
+</head>
+<style>
+#resume {
+  width: 210mm;
+  min-height: 297mm;
+  padding: 10mm;
+  margin: 0;              /* make sure no top margin */
+  background: white;
+  box-sizing: border-box;
+}
+
+
+.page-break {
+  page-break-before: always;
+}
+
+</style>
+
+</style>
+<body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<!-- Wrap your resume inside a container -->
+<div id="resume" class="resume-wrapper">
+    <!-- Left column -->
+    <div class="left-column text-center">
+        <img src="{% static 'images/user.png' %}" alt="Profile" class="profile-pic">
+        <h2>{{ resume.full_name }}</h2>
+        <p>{{ resume.address }}</p>
+        <h3>Contact</h3>
+        <p>{{ resume.email }}</p>
+        <p>{{ resume.phone }}</p>
+        {% if resume.linkedin %}<p><a href="{{ resume.linkedin }}" target="_blank">LinkedIn</a></p>{% endif %}
+        {% if resume.github %}<p><a href="{{ resume.github }}" target="_blank">GitHub</a></p>{% endif %}
+        {% if resume.portfolio %}<p><a href="{{ resume.portfolio }}" target="_blank">Portfolio</a></p>{% endif %}
+
+        <h3>Skills</h3>
+        <ul class="text-start">
+        {% for skill in skills %}
+            <li>{{ skill.skill }}</li>
+        {% empty %}
+            <li>No skills added.</li>
+        {% endfor %}
+        </ul>
+
+        <h3>Languages</h3>
+        <ul class="text-start">
+        {% for lan in languages %}
+            <li>{{ lan.language }} ({{ lan.proficiency }})</li>
+        {% empty %}
+            <li>No languages added.</li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Right column -->
+    <div class="right-column">
+        <h2>Education</h2>
+        {% for edu in education %}
+            <p><strong>{{ edu.degree }}</strong>, {{ edu.university }} ({{ edu.year }}) – {{ edu.grade }}</p>
+        {% empty %}
+            <p>No education added.</p>
+        {% endfor %}
+
+        <h2>Experience</h2>
+        {% for exp in experience %}
+            <p>
+                <strong>{{ exp.role }}</strong> @ {{ exp.company }} <br>
+                <em>{{ exp.duration }}</em> <br>
+                {{ exp.description }}
+            </p>
+        {% empty %}
+            <p>No experience added.</p>
+        {% endfor %}
+
+        <h2>Projects</h2>
+        {% for proj in projects %}
+            <p>
+                <strong>{{ proj.title }}</strong> <br>
+                {{ proj.description }} <br>
+                <em>{{ proj.technologies }}</em>
+                {% if proj.link %}<br><a href="{{ proj.link }}" target="_blank">{{ proj.link }}</a>{% endif %}
+            </p>
+        {% empty %}
+            <p>No projects added.</p>
+        {% endfor %}
+
+        <h2>Certifications</h2>
+        {% for cer in certifications %}
+            <p><strong>{{ cer.name }}</strong> – {{ cer.organization }} ({{ cer.issue_date|date:"Y" }})</p>
+        {% empty %}
+            <p>No certifications added.</p>
+        {% endfor %}
+
+        <h2>Achievements</h2>
+        <ul>
+        {% for ach in achievements %}
+            <li>{{ ach.title }} – {{ ach.description }}</li>
+        {% empty %}
+            <li>No achievements added.</li>
+        {% endfor %}
+        </ul>
+
+        <h2>Publications</h2>
+        <ul>
+        {% for pub in publications %}
+            <li><strong>{{ pub.title }}</strong> – {{ pub.journal }} ({{ pub.date|date:"Y" }})</li>
+        {% empty %}
+            <li>No publications added.</li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<!-- Download button -->
+<div class="text-center mt-4">
+    <button class="btn btn-primary" onclick="downloadResume()">Download Resume as PDF</button>
+</div>
+
+<script>
+function downloadResume() {
+  const element = document.getElementById("resume");
+  html2pdf()
+    .set({
+      margin: 0,
+      filename: '{{ resume.full_name|default:"My_Resume" }}.pdf',
+      html2canvas: { scale: 2, useCORS: true,scrollY:0 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    })
+    .from(element)
+    .save();
+}
+
+</script>
+
+</body>
+</html>

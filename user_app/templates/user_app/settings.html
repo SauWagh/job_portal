@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+
+    <title>Settings — JobPortal</title>
+
+</head>
+<body style="background-color: black;">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: rgba(18,18,18,0.85);">
+    <a class="navbar-brand" href="#">JobPortal</a>
+
+    <!-- Mobile Toggle (requires Bootstrap JS to work) -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/list/">Jobs</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/emp_pj/">Employers/Post Job</a></li>
+      </ul>
+
+      <div class="form-inline my-2 my-lg-0">
+        <!-- <a href="/login/" class="btn btn-outline-light mr-2">User Login</a> -->
+        <a href="/register/" class="btn btn-light">Register</a>
+          {% if user.is_authenticated %}
+              <div class="profile-icon">
+                  <a href="{% url 'dashboard' %}">
+                      {% if profile and profile.profile_picture %}
+                          <img src="{{ profile.profile_picture.url }}" 
+                               alt="Profile Picture"
+                               class="rounded-circle"
+                               style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
+                      {% else %}
+                          
+                          <img src="{% static 'images/user.png' %}" 
+                               alt="Profile"
+                               style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
+                      {% endif %}
+                  </a>
+              </div>
+          {% else %}
+              <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">
+                  Login
+              </button>
+          {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  <!-- Settings root (grid parent) -->
+  <div class="settings-root">
+
+    <!-- Header panel -->
+    <div class="set-panel">
+      <h1>Settings</h1>
+      <p class="muted">Control the communication you receive, change your email/mobile, deactivate account and manage job recommendations.</p>
+    </div>
+
+    <!-- radios + labels (they must be siblings of .tab-content for the CSS selectors to work) -->
+     
+    <input type="radio" name="menu" id="c-p-tab" checked>
+    <label for="c-p-tab">Communication and Privacy</label>
+
+    <input type="radio" name="menu" id="acc-tab">
+    <label for="acc-tab">Account</label>
+
+    <input type="radio" name="menu" id="j-p-tab">
+    <label for="j-p-tab">Job Preferences</label>
+
+    <input type="radio" name="menu" id="b-c-tab">
+    <label for="b-c-tab">Block Companies</label>
+
+    <!-- Content area (sibling of radios) -->
+    <div class="tab-content">
+
+      <!-- Communication & Privacy -->
+      <div class="c-p">
+        <section class="py-3">
+          <div class="container-fluid p-0">
+            <h2 class="text-center mb-4" style="color:#ffffff; font-weight:600; letter-spacing:1px;">
+              Communication & Privacy
+            </h2>
+
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <div class="card dark h-100">
+                  <div class="card-body">
+                    <h4 class="card-title mb-3" style="color:#00bcd4;">📢 Communication</h4>
+                    <ul>
+                      <li>✅ Secure platform for job seekers & employers.</li>
+                      <li>✅ Notifications via email/SMS (customizable in settings).</li>
+                      <li>✅ No spam or third-party ads.</li>
+                      <li>✅ Recruiters must follow fair-usage policy.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-3">
+                <div class="card dark h-100">
+                  <div class="card-body">
+                    <h4 class="card-title mb-3" style="color:#4caf50;">🔒 Privacy</h4>
+                    <ul>
+                      <li>🔹 Only essential details collected (resume, email, skills).</li>
+                      <li>🔹 Strong encryption & secure databases.</li>
+                      <li>🔹 Full control to update/delete your profile.</li>
+                      <li>🔹 Contact details shared only with your consent.</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-2">
+              <div class="card dark">
+                <div class="card-body">
+                  <h4 class="card-title mb-3" style="color:#ff9800;">⚠️ Your Responsibility</h4>
+                  <ul>
+                    <li>🚫 Never share sensitive info (bank details, OTPs).</li>
+                    <li>📩 Report fake jobs or suspicious recruiters.</li>
+                    <li>🤝 Use the platform professionally & responsibly.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <p class="text-center mt-3 muted">
+              We keep your communication secure and your privacy protected so you can focus on finding the right opportunities safely.
+            </p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Account -->
+      <div class="Acc">
+        <section class="p-3">
+          <h2>Account</h2>
+
+          <div class="profile-block d-flex align-items-center mt-3">
+            <div class="mr-3">
+              {% if profile.profile_picture %}
+                <img src="{{ profile.profile_picture.url }}" alt="Profile Picture">
+              {% else %}
+                <img src="{% static 'images/profile-picture.png' %}" alt="Default Profile">
+              {% endif %}
+            </div>
+            <div>
+              <a href="{% url 'user_profile' %}" style="color:#fff; text-decoration:none;">
+                <h5 style="margin-bottom:4px;">{{ profile.full_name }}'s Profile</h5>
+              </a>
+              <p class="muted mb-0"><strong>📧</strong> {{ request.user.email }}</p>
+              <p class="muted mb-0"><strong>📞</strong> {{ profile.phone_number }}</p>
+              <p class="muted mb-0">
+                <strong>Gender:</strong>
+                {% if profile.gender == "Male" %}
+                  ♂️ {{ profile.gender }}
+                {% elif profile.gender == "Female" %}
+                  ♀️ {{ profile.gender }}
+                {% else %}
+                  ⚧ {{ profile.gender }}
+                {% endif %}
+              </p>
+              <p class="muted mb-0"><strong>🎂</strong> {{ profile.date_of_birth }}</p>
+            </div>
+          </div>
+          <a href="{% url 'edit_profile' %}" style="text-decoration: none; color: white;">Edit Profile</a>
+        </section>
+        <!-- <form method="post">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Delete My Account</button>
+        </form> -->
+        <button class="btn btn-danger">Delete</button>
+      </div>
+
+      <!-- Job Preferences -->
+      <div class="j-p">
+        <section class="p-3">
+          <h2>Job Preferences</h2>
+          <p class="muted">Manage your desired roles, locations, salary and notification preferences here.</p>
+
+          <!-- example content -->
+          <div class="mt-3">
+            <div class="card dark">
+              <div class="card-body">
+                <h5 class="card-title">Preferred Roles</h5>
+                <p class="muted">Software Developer, Backend Engineer</p>
+                <h5 class="card-title mt-3">Preferred Locations</h5>
+                <p class="muted">Nagpur, Pune, Mumbai</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Block Companies -->
+      <div class="b-c">
+        <section class="p-3">
+          <h2>Block Companies</h2>
+          <p class="muted">Blocked companies will not be able to contact you or see your profile in their search results.</p>
+
+          <div class="mt-3">
+            <div class="card dark">
+              <div class="card-body">
+                <p class="muted mb-0">You haven't blocked any companies yet.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div> <!-- /.tab-content -->
+
+  </div> <!-- /.settings-root -->
+
+  <!-- Optional: include Bootstrap JS for navbar collapse (not required for the tab behaviour) -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
