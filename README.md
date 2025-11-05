@@ -1,4 +1,5 @@
 # job_portal
+
 <br>
 
 # Features
@@ -31,5 +32,21 @@
 <br>
 
 # Working
+<img width="1920" height="1020" alt="Image" src="https://github.com/user-attachments/assets/acb9d08e-c0f1-4ec0-89d7-caf52fcb7bba" />
+
+<br>
+
 	1. register your self
-	
+<img width="1920" height="1020" alt="Image" src="https://github.com/user-attachments/assets/5c47224d-e4ec-4325-b4dc-2581b624a60b" />
+
+	2. post your job opening
+<img width="1920" height="1020" alt="Image" src="https://github.com/user-attachments/assets/a4d09e72-92a5-40f5-aad8-2b33a7ded53d" />
+
+	3.fill your compony detail and list a job for opening
+<img width="1920" height="1020" alt="Image" src="https://github.com/user-attachments/assets/25400e75-705b-42cd-8239-ac4095e0b1b2" />
+
+<br>
+
+<img width="1920" height="1020" alt="Image" src="https://github.com/user-attachments/assets/efdc2d85-ff52-4ba9-819b-971f82af3368" />
+
+
