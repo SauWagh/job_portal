@@ -2,9 +2,9 @@
 
 <br>
 
-# Features
+## Features
 
-* for job seeker
+* ### for job seeker
     1. Search jobs - you can search and filter jobs by title, location,category or company
     2. Apply for jobs - you can apply for job directly and see job status
     3. Track application status - view your application status like: Pending, Accepted, Rejected
@@ -14,14 +14,14 @@
     7. profile completion status - see how much profile you have build you can get percentage for your profile complition
  <br>
  
-* For Employers
+* ### For Employers
 	1. post jobs -  Easily post job and manage your listed job
 	2. View Applicants - see who has applied for your posted jobs
     3. Accept or Reject Applications - Manage applications directly and applicant status to Rejcted or Accepted
     4. Applicant Folder - keep track of all application of all the posted job 
 <br>
 
-# Navigation Overview
+## Navigation Overview
 	Home - Introduction and latest job
 	About - Learn more about platform
 	Contact - Get in touch with admin support and send complaint through mail 
@@ -31,7 +31,7 @@
 	Resume Maker - Easily create resume and download resume
 <br>
 
-# Working
+## Working
 <img width="1920" height="1020" alt="Image" src="https://github.com/user-attachments/assets/acb9d08e-c0f1-4ec0-89d7-caf52fcb7bba" />
 
 <br><br><br>
@@ -53,4 +53,7 @@
 
 <img width="1920" height="1020" alt="Image" src="https://github.com/user-attachments/assets/efdc2d85-ff52-4ba9-819b-971f82af3368" />
 
+## Developed by
 
+**Saurabh Waghmare**  
+📧 [sw750978@gmail.com](mailto:sw750978@gmail.com)
