@@ -15,6 +15,13 @@ import os
 
 load_dotenv() 
 
+# Django settings from environment
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+DEBUG = os.environ.get("DEBUG", "False") == "True"
+
+# OpenAI API key for your chatbot
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
