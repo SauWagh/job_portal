@@ -6,3 +6,4 @@ python-decouple
 djangorestframework
 Pillow
 python-dotenv
+django-crispy-forms
