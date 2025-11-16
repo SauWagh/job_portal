@@ -1,92 +1,181 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   {% load static %}
-    <title>SimpleBot</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <style>
-        body { font-family: Arial; background: #111; color: white; }
-        #chatbox { width: 400px; margin: 50px auto; background: #222; padding: 20px; border-radius: 10px; }
-        #messages { height: 300px; overflow-y: auto; }
-        .user { color: cyan; }
-        .bot { color: lime; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SimpleBot 🤖</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+
+  <style>
+    body {
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      font-family: 'Arial', sans-serif;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Chat container */
+    #chatbox {
+      background: rgba(0,0,0,0.6);
+      max-width: 500px;
+      width: 90%;
+      margin: auto;
+      margin-top: 50px;
+      border-radius: 15px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+
+    #chatbox h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ffeb3b;
+    }
+
+    #messages {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      height: 300px;
+      overflow-y: auto;
+      padding: 10px;
+      margin-bottom: 15px;
+      flex-grow: 1;
+    }
+
+    .user, .bot {
+      margin: 5px 0;
+      padding: 8px 12px;
+      border-radius: 10px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .user {
+      background: #4fc3f7;
+      color: #000;
+      align-self: flex-end;
+    }
+
+    .bot {
+      background: #81c784;
+      color: #000;
+      align-self: flex-start;
+    }
+
+    /* Input area */
+    #user_input {
+      flex: 1;
+      border-radius: 20px;
+      border: none;
+      padding: 10px 15px;
+      margin-right: 10px;
+      outline: none;
+    }
+
+    #sendBtn {
+      border-radius: 20px;
+      border: none;
+      padding: 10px 20px;
+      background: #ffeb3b;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #sendBtn:hover {
+      background: #ffc107;
+    }
+
+    /* Make chat responsive */
+    @media (max-width: 576px) {
+      #chatbox {
+        margin-top: 20px;
+        padding: 15px;
+        height: 100%;
+      }
+
+      #messages {
+        height: 250px;
+      }
+
+      #sendBtn {
+        padding: 8px 15px;
+      }
+    }
+  </style>
 </head>
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(18, 18, 18, 0.7);">
-      <a class="navbar-brand" href="#">JobPortal</a>
-
-      <!-- Mobile Toggle -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <!-- Navbar Content -->
-      <div class="collapse navbar-collapse" id="navbarContent">
-        <!-- Left Links -->
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="/list/">Jobs</a></li>
-          <li class="nav-item"><a class="nav-link" href="/about/" style="text-decoration: underline; text-underline-offset: 10px; color: white;">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
-          <li class="nav-item"><a class="nav-link" href="/emp_pj/">Employers/Post Job</a></li>
-        </ul>
-
-        <!-- Right Buttons -->
-        <div class="form-inline my-2 my-lg-0">
-          <!-- <a href="/login/" class="btn btn-outline-light mr-2">User Login</a> -->
-          <a href="/register/" class="btn btn-light">Register</a>
-          {% if user.is_authenticated %}
-              <div class="profile-icon">
-                  <a href="{% url 'dashboard' %}">
-                      {% if profile and profile.profile_picture %}
-                          <img src="{{ profile.profile_picture.url }}" 
-                               alt="Profile Picture"
-                               class="rounded-circle"
-                               style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
-                      {% else %}
-                          
-                          <img src="{% static 'images/user.png' %}" 
-                               alt="Profile"
-                               style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
-                      {% endif %}
-                  </a>
-              </div>
-          {% else %}
-              <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">
-                  Login
-              </button>
-          {% endif %}
-
-        </div>
-      </div>
-    </nav>
 <body>
-    <div id="chatbox">
-        <h2>SimpleBot 🤖</h2>
-        <div id="messages"></div>
-        <input type="text" id="user_input" placeholder="Type a message..." />
-        <button onclick="sendMessage()">Send</button>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(18, 18, 18, 0.8);">
+    <a class="navbar-brand" href="#">JobPortal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/list/">Jobs</a></li>
+        <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+        <li class="nav-item"><a class="nav-link" href="/emp_pj/">Employers/Post Job</a></li>
+      </ul>
+      <div class="form-inline my-2 my-lg-0">
+        <a href="/register/" class="btn btn-light mr-2">Register</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'dashboard' %}">
+            {% if profile and profile.profile_picture %}
+              <img src="{{ profile.profile_picture.url }}" alt="Profile Picture" class="rounded-circle" style="width:40px; height:40px; object-fit:cover; border:2px solid #fff;">
+            {% else %}
+              <img src="{% static 'images/user.png' %}" alt="Profile" class="rounded-circle" style="width:40px; height:40px; border:2px solid #fff;">
+            {% endif %}
+          </a>
+        {% else %}
+          <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">Login</button>
+        {% endif %}
+      </div>
     </div>
+  </nav>
 
-    <script>
-        function sendMessage() {
-            let userInput = document.getElementById("user_input").value;
-            let messagesDiv = document.getElementById("messages");
+  <!-- Chatbox -->
+  <div id="chatbox">
+    <h2>SimpleBot 🤖</h2>
+    <div id="messages"></div>
+    <div class="d-flex">
+      <input type="text" id="user_input" placeholder="Type a message..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button id="sendBtn" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
 
-            messagesDiv.innerHTML += "<p class='user'><b>You:</b> " + userInput + "</p>";
+  <!-- Scripts -->
+  <script>
+    function sendMessage() {
+      let userInput = document.getElementById("user_input").value.trim();
+      if (!userInput) return;
 
-            fetch(`/get-response/?message=${userInput}`)
-                .then(response => response.json())
-                .then(data => {
-                    messagesDiv.innerHTML += "<p class='bot'><b>Bot:</b> " + data.response + "</p>";
-                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
-                });
+      let messagesDiv = document.getElementById("messages");
+      messagesDiv.innerHTML += "<p class='user'><b>You:</b> " + userInput + "</p>";
 
-            document.getElementById("user_input").value = "";
-        }
-    </script>
+      fetch(`/get-response/?message=${encodeURIComponent(userInput)}`)
+        .then(response => response.json())
+        .then(data => {
+          messagesDiv.innerHTML += "<p class='bot'><b>Bot:</b> " + data.response + "</p>";
+          messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        });
+
+      document.getElementById("user_input").value = "";
+      messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    }
+  </script>
 </body>
 </html>

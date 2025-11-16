@@ -4,18 +4,25 @@
   {% load static %}
   <meta charset="UTF-8">
   <title>Create Resume</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
 
   <style>
     body {
       background: linear-gradient(135deg, #0c0c0c, #1a1a1a);
       color: #f5f5f5;
       font-family: "Poppins", sans-serif;
-      min-height: 100vh;
+      min-height: 100%;
+      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 40px 0;
+      flex-direction: column;
     }
 
     .resume-container {
@@ -25,7 +32,6 @@
       padding: 40px;
       box-shadow: 0 0 25px rgba(0,0,0,0.8);
       position: relative;
-      overflow: hidden;
     }
 
     .form-section {
@@ -147,9 +153,137 @@
       color: #fff;
       transform: scale(1.1);
     }
+    html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+    /* ---- MOBILE RESPONSIVE FIX ---- */
+@media (max-width: 768px) {
+
+  body {
+    padding: 20px 10px;
+  }
+
+  .resume-container {
+    width: 100%;
+    padding: 25px;
+    min-height: 100%;
+  }
+
+  .progress-bar-container {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .step-dot {
+    width: 20px;
+    height: 20px;
+    font-size: 11px;
+  }
+
+  .progress-line,
+  .progress-fill {
+    height: 3px;
+  }
+
+  .form-section {
+    padding: 20px;
+  }
+
+  .btn-step {
+    padding: 8px 14px;
+    margin: 8px 3px;
+  }
+
+  /* Prevent content from overflowing */
+  input, select, textarea {
+    font-size: 14px;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+
+  .resume-container {
+    padding: 18px;
+    min-height: 100%;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  h4 {
+    font-size: 1rem;
+  }
+
+  .step-dot {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+  }
+
+  input, select, textarea {
+    font-size: 13px;
+  }
+}
+
+
   </style>
 </head>
 <body>
+
+   <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: rgba(18, 18, 18, 0.7); width: 100%; position: relative; top: -30px;" >
+      <a class="navbar-brand" href="#">JobPortal</a>
+
+      <!-- Mobile Toggle -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Navbar Content -->
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <!-- Left Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="{% url 'home' %}"style="text-decoration: underline; text-underline-offset: 20px; color: white;">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/list/">Jobs</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/contact/">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/emp_pj/">Employers/Post Job</a></li>
+        </ul>
+
+        <!-- Right Buttons -->
+        <div class="form-inline my-2 my-lg-0">
+          <!-- <a href="/login/" class="btn btn-outline-light mr-2">User Login</a> -->
+          <a href="/register/" class="btn btn-light" st>Register</a>
+          {% if user.is_authenticated %}
+              <div class="profile-icon">
+                  <a href="{% url 'dashboard' %}">
+                      {% if profile and profile.profile_picture %}
+                          <img src="{{ profile.profile_picture.url }}" 
+                               alt="Profile Picture"
+                               class="rounded-circle"
+                               style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
+                      {% else %}
+                          
+                          <img src="{% static 'images/user.png' %}" 
+                               alt="Profile"
+                               style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
+                      {% endif %}
+                  </a>
+              </div>
+          {% else %}
+              <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">
+                  Login
+              </button>
+          {% endif %}
+
+        </div>
+      </div>
+    </nav>
+
 
 <div class="resume-container">
   <h3 class="text-center mb-4">🧾 Build Your Resume</h3>
@@ -307,7 +441,12 @@ document.getElementById('add-experience')?.addEventListener('click', () => clone
 document.getElementById('add-skill')?.addEventListener('click', () => cloneForm('skill'));
 document.getElementById('add-achievement')?.addEventListener('click', () => cloneForm('achievement'));
 </script>
-
+  <script>
+    AOS.init({
+      duration: 1200,  // animation duration
+      once: true       // animate only once
+    });
+  </script>
 
 </body>
 </html>

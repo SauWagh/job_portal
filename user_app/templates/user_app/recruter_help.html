@@ -7,7 +7,13 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/help.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
     <title>Document</title>
+    
 </head>
   <style>
 .input-container {
@@ -49,7 +55,31 @@
   background-color: rgba(108, 108, 108, 0.6);
   box-shadow: 1px 2px 3px rgb(55, 55, 55);
 }
-
+@media(max-width:760px){
+  .input-container input {
+    width: 379%;
+    height: 42px;
+    padding: 10px 100px 10px 15px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    background: linear-gradient(to right, #efafaf 0%, #dec5c5 40%, #b1c4ff 60%, #4d79ff 100%);
+    color: #000000;
+    left: -46%;
+    position: relative;
+}
+.input-container button {
+    position: absolute;
+    top: 50%;
+    left: 231%;
+}
+.how{
+  font-size: 28px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+}
   </style>
 <body style="background-color: black;">
         <!-- Navbar -->
@@ -100,7 +130,7 @@
       </div>
     </nav>
 
-    <h1 style="color: white; font-weight: 700;">Hi, how can we help you?</h1>
+    <h1 style="color: white; font-weight: 700;" class="how">Hi, how can we help you?</h1>
     <div class="input-container">
         <form method="GET">
             <input type="text" name="q" placeholder="Search By name....." value="{{ request.GET.q }}">

@@ -1,0 +1,7 @@
+Django>=3.2
+chatterbot==1.0.5
+ChatterBot-Corpus==1.2.0
+PyYAML
+gunicorn
+psycopg2-binary
+django-environ

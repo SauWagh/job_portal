@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="{% static 'css/style.css' %}">
   <link rel="stylesheet" href="{% static 'css/job_list.css' %}">
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
 
   <title>Job Listings</title>
 </head>
@@ -123,6 +127,77 @@
 .tag-dropdown .option:hover {
   background: linear-gradient(to right, #ffa5a5 0%, #faaeae 40%, #728ad3 60%, #3264fc 100%);
   transform: scale(1.05);
+}
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+  body {
+    padding: 5% !important;
+  }
+
+  h1 {
+    font-size: 36px !important;
+    margin-top: 80px !important;
+    text-align: center !important;
+  }
+
+  .search-input {
+    width: 90% !important;
+    margin-left: 0 !important;
+  }
+
+  .search-input input {
+    width: 111% !important;
+    padding: 0 60px 0 15px !important;
+    margin-top: 201px !important;
+    margin-bottom: 15px !important;
+  }
+
+  .search-input button {
+    top: 50% !important;
+    left: 85% !important;
+    transform: translateY(-50%) !important;
+    padding: 0 10px !important;
+    height: 30px !important;
+    font-size: 14px !important;
+  }
+
+  .job-tags {
+    width: 100% !important;
+    right: 0 !important;
+    justify-content: flex-start !important;
+    flex-wrap: wrap !important;
+    padding-bottom: 10px !important;
+  }
+
+  .job-tags .tag-dropdown {
+    margin-bottom: 8px;
+  }
+
+  .col-md-4.job-list, .col-md-8 {
+    width: 100% !important;
+    display: block !important;
+  }
+
+  .job-list {
+    margin-bottom: 20px;
+  }
+
+  .side-panel {
+    width: 250px !important;
+  }
+  .find{
+    padding-top: 82px;
+    font-size: 21px!important;
+  }
+  body h1{
+    font-size: 50px;
+  }
+.job-card.active + .job-details {
+    display: block;
+}
+.job-details {
+    display: none;
+}
 }
 
 
@@ -291,7 +366,7 @@
 
   </div>
   
-<h1 style="position: absolute; top: 0; font-weight: 800; font-size: 60px; text-align: center; margin-top: 115px;">Find your ideal job here</h1>
+<h1 style="position: absolute; top: 0; font-weight: 800; font-size: 60px; text-align: center; margin-top: 115px;" class="find">Find your ideal job here</h1>
 
 <div class="container-fluid">
   <div class="row">
@@ -417,9 +492,11 @@
 </div>    
 
 
-<div class="row">
+<div class="row" style="    position: relative;
+    right: 0%;
+    bottom: 0">
   <!-- Left side -->
-  <div class="col-md-4 job-list">
+  <div class="col-md-4 job-list" style="width: 1200px;">
     {% for job in jobs %}
       <a href="#job{{ forloop.counter }}" class="job-card d-block" data-job-id="{{ forloop.counter }}" style="color: white; text-decoration: none;">
         <h5>{{ job.job_title }}</h5>
@@ -463,23 +540,44 @@
   </div>
 </div>
 <script>
-document.addEventListener('DOMContentLoaded',function(){
+document.addEventListener('DOMContentLoaded', function() {
     const jobCards = document.querySelectorAll('.job-card');
-    const jobDetails = document.querySelector('.job-details');
+
+    // Make the first job card active on page load
+    if (jobCards.length > 0) {
+        const firstCard = jobCards[0];
+        firstCard.classList.add('active');
+
+        // Scroll the corresponding job details into view properly
+        const jobId = firstCard.getAttribute('href').substring(1);
+        const detail = document.getElementById(jobId);
+        if (detail) {
+            setTimeout(() => {
+                detail.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+                // Extra force to align horizontally if needed
+                if (detail.parentElement) {
+                    detail.parentElement.scrollLeft = 0;
+                }
+            }, 100);
+        }
+    }
+
+    // Click event for all job cards
     jobCards.forEach(card => {
-        card.addEventListener('click',function(e){
-            jobCards.forEach(c =>c.classList.remove('active'));
+        card.addEventListener('click', function(e) {
+            jobCards.forEach(c => c.classList.remove('active'));
             card.classList.add('active');
             const jobId = card.getAttribute('href').substring(1);
-            const detail = document.getElementById(jobId)
-            if (detail){
-                detail.scrollIntoView({behavior:'smooth'});
-            } 
-
+            const detail = document.getElementById(jobId);
+            if (detail) {
+                detail.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'start' });
+                if (detail.parentElement) {
+                    detail.parentElement.scrollLeft = 0;
+                }
+            }
         });
     });
 });
-
 
 </script>
 

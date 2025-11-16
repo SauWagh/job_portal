@@ -319,3 +319,286 @@
     transform: scale(1.4);
     transition: transform 0.1s;
 }
+.save {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    cursor: pointer;
+}
+
+.save:hover {
+    transform: scale(1.2);  /* Slightly enlarges on hover */
+    opacity: 0.8;           /* Slight transparency */
+}
+.save-btn:active .save-icon {
+    transform: scale(1.4);
+    transition: transform 0.1s;
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 768px) {
+
+    body {
+        padding: 5% !important;
+    }
+
+    /* Adjust navbar */
+    .navbar .navbar-nav {
+        text-align: center;
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item {
+        margin-bottom: 5px;
+    }
+
+    .navbar-brand {
+        font-size: 20px !important;
+    }
+
+    /* Layout Flex Adjustment */
+    .dash, .job, .add {
+        flex: 1 1 100% !important;
+        max-width: 100% !important;
+        padding: 15px !important;
+        margin-bottom: 20px;
+    }
+
+    .dash img {
+        width: 120px !important;
+        height: 120px !important;
+        left: 50% !important;
+        transform: translateX(-50%);
+    }
+
+    .dash h5, .dash p {
+        text-align: center !important;
+        font-size: 14px !important;
+    }
+
+    .dash .option a, .dash .logout-link {
+        display: block;
+        margin: 5px 0;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* Job section */
+    .job-header h2 {
+        font-size: 20px !important;
+        text-align: center !important;
+    }
+
+    .job-header .see_all {
+        display: block !important;
+        text-align: center;
+        margin-top: 5px;
+        font-size: 14px !important;
+    }
+
+    .job-pop .job-win {
+        position: relative;
+        width: 100% !important;
+        padding: 10px !important;
+        margin-bottom: 15px;
+    }
+
+    .save-btn {
+        position: absolute !important;
+        top: 10px !important;
+        right: 10px !important;
+        left: auto !important;
+    }
+
+    .save-btn img {
+        width: 22px !important;
+        height: 22px !important;
+    }
+
+    /* Resume & community sections */
+    .create-resume, .work-people {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 15px !important;
+        height: 120px;
+        background-color: antiquewhite;
+    
+    }
+
+    .create-resume img, .work-people img {
+        width: 118% !important;
+        height: auto !important;
+        position:  relative !important;
+        left: -15px !important;
+        bottom: -19px;
+    }
+
+    .resume-points ul, .community-points ul {
+        font-size: 12px !important;
+        padding-left: 15px !important;
+    }
+
+    .resume_btn a, .community_btn a {
+        display: block !important;
+        width: 80% !important;
+        margin: 10px auto !important;
+        font-size: 14px !important;
+    }
+
+    /* Advertisement section */
+    .add img {
+        width: 80% !important;
+        height: auto !important;
+        display: block;
+        margin: 10px auto;
+    }
+
+    .add h2 {
+        font-size: 18px !important;
+        text-align: center;
+    }
+
+    /* Scrollbar adjustments */
+    .job {
+        overflow-y: visible !important;
+    }
+        .btn-create-resume {
+        display: block;
+        margin: 20px auto; /* center the button on mobile */
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+    .resume-points li {
+        font-size: 9px;    /* slightly smaller font */
+        margin-bottom: 3px; /* even tighter on mobile */
+        line-height: 0;
+    }
+    .text-overlay h4{
+        font-size: 9px !important;
+    }
+    .option {
+    position: relative !important;
+    top: 10% !important;
+}
+.community{
+    height: 36% !important;
+}
+
+.community img{
+    position: relative !important;
+    top: 33% !important;
+}
+/* ---- ONLY Profile Toggle on Mobile ---- */
+@media (max-width: 768px) {
+
+
+    .profile-sidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;  
+        width: 80%;
+        height: 100vh;
+        background: #111;
+        color: white;
+        padding: 20px;
+        transition: left 0.3s ease-in-out;
+        z-index: 99999;
+        overflow-y: auto;
+    }
+
+    .profile-sidebar.show {
+        left: 0; /* slide in */
+    }
+
+    .close-profile {
+        background: transparent;
+        color: white;
+        border: none;
+        font-size: 30px;
+        float: right;
+        margin-bottom: 20px;
+    }
+}
+
+/* Desktop keeps default layout */
+@media (min-width: 769px) {
+    .profile-toggle-btn { display: none; }
+    .profile-sidebar {
+        position: relative;
+        left: 0;
+        width: 100%;
+        height: auto;
+    }
+    .close-profile { display: none; }
+}
+
+}
+
+/* ============================
+   PROFILE SIDEBAR (ONLY MOVES DASH SECTION)
+   ============================ */
+@media (max-width: 768px) {
+
+    .profile-toggle-btn {
+        /* display: block; */
+        /* background: #1f8bff; */
+        color: white;
+        /* padding: 10px 15px; */
+        border: none;
+        border-radius: 8px;
+        margin: 10px 0;
+        font-size: 16px;
+        z-index: 9999;
+        position: relative;
+    }
+
+    /* ONLY SIDEBAR (dash section), not job or ad section */
+    #profileSidebar {
+        position: fixed;
+        top: 0;
+        left: -100%;   /* hidden */
+        width: 80%;
+        height: 100vh;
+        background: #111;
+        color: white;
+        padding: 20px;
+        transition: left 0.3s ease-in-out;
+        z-index: 999999;
+        overflow-y: auto;
+    }
+
+    #profileSidebar.show {
+        left: 0;  /* slide in */
+    }
+
+    .close-profile {
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 32px;
+        float: right;
+        margin-bottom: 10px;
+    }
+}
+
+/* Desktop stays normal */
+@media (min-width: 769px) {
+    .profile-toggle-btn { display: none; }
+    #profileSidebar {
+        position: relative;
+        left: 0;
+        height: auto;
+        width: 100%;
+    }
+    .close-profile { display: none; }
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    z-index: 10000;
+}
+}
+
+
+
+

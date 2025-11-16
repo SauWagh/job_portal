@@ -57,6 +57,7 @@
   position: relative;
   right: 20%;
 }
+
 .tag-dropdown {
   position: relative;
   display: inline-block;
@@ -97,6 +98,121 @@
 .tag-dropdown .option:hover {
   background: linear-gradient(to right, #ffa5a5 0%, #faaeae 40%, #728ad3 60%, #3264fc 100%);
   transform: scale(1.05);
+}
+@media (max-width: 767px) {
+  .input-container {
+    width: 90%;
+  }
+
+  .input-container input {
+         width: 130%;
+        height: 45px;
+        font-size: 14px;
+        position: relative;
+        right: 44px;
+  }
+
+  .input-container button {
+        height: 40px;
+        font-size: 14px;
+        right: 5px;
+        position: absolute;
+        left: 87%;
+        top: 13%;
+        width: 30%;
+  }
+  .image_panel{
+    width: 220%;
+  }
+  .hero-image{
+        width: 50%;
+    position: relative;
+    left: 15%;
+  }
+/* Job Tags - Desktop / Default */
+.job-tags {
+    display: flex;
+    flex-wrap: wrap;      /* Allow items to wrap */
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-start; /* Left align by default */
+}
+
+.tag-dropdown {
+    flex: 1 1 calc(20% - 10px); /* 5 tags per row on desktop */
+    min-width: 100px;            /* Optional minimum width */
+}
+
+/* Dropdown options styling */
+.tag-dropdown .dropdown-options {
+    display: none;
+    position: absolute;
+    top: 120%;
+    left: 0;
+    background-color: #111;
+    padding: 8px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    min-width: 120px;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 10;
+}
+
+.tag-dropdown:hover .dropdown-options {
+    display: flex;
+}
+
+/* Mobile / Tablet specific */
+@media (max-width: 767px) {
+  .container{
+    padding-top: 10%;
+  }
+    .job-tags {
+        gap: 8px;
+        justify-content: flex-start; /* Default left alignment */
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .tag-dropdown {
+        flex: 1 1 calc(25% - 8px); /* 4 items per row for first 8 tags */
+        min-width: 80px;
+    }
+
+    /* Center last 2 tags */
+    .tag-dropdown:nth-last-child(-n+2) {
+        flex: 1 1 50%;        /* Each takes 50% of row */
+        justify-content: center;
+        margin-left: auto;    /* Center them horizontally */
+        margin-right: auto;
+    }
+}
+
+  @media (max-width: 767px) {
+    .tag-dropdown {
+        flex: 1 1 calc(25% - 8px); /* 4 per row on mobile */
+    }
+
+    /* Last 2 tags center */
+    .tag-dropdown:nth-last-child(-n+2) {
+        flex: 1 1 50%;
+        justify-content: center;
+    }
+    .display-4{
+      font-size: 27px;
+    }
+    .navbar {
+    position: absolute !important;
+    top: 0 !important;
+    left: 2% !important;
+    width: 112% !important;
+    z-index: 1000 !important;
+    margin-top: 10px !important;
+    border: 1px solid !important;
+    border-radius: 5px !important;
+}
+}
 }
 
   </style>
@@ -314,7 +430,7 @@
 
       <div class="jumbotron text-center" style="background-color: transparent;">
         <div class="image_panel">
-            <img src="{% static 'images/5235.jpg' %}" alt="Welcome Illustration" class="hero-image">
+            <img src="{% static 'images/5235.jpg' %}" alt="Welcome Illustration" class="img-fluid hero-image">
         </div>
         <br><br>
         <p style="color:rgb(255, 255, 255);"><a class="btn btn-primary" href="/register/" role="button">Get Started &rarr;</a></p>

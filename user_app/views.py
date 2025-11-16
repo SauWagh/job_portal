@@ -95,38 +95,43 @@ def user_profile(request):
 
 
 def user_dashboard(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
 
-    profile = None
-    if request.user.is_authenticated:
-        profile = getattr(request.user,'detail',None)
-    
-    jobs = JobDetails.objects.all().select_related('can_des', 'job_des', 'comm')
-
-    
-    saved_job_ids = request.user.saved_jobs.values_list('job_id', flat=True)
-
-    applied_job = JobApplication.objects.filter(user=request.user).select_related('job')
-    applied_count = applied_job.count()
-
-    print("Applied Jobs:", applied_job)
-
+    # Try to get user detail safely
     try:
         profile = request.user.detail
     except UserDetail.DoesNotExist:
-        profile= None
-        
-    completion = profile.profile_completed()
-    completion_class = f"w-{round(completion / 5) * 5}"
-    return render(request, 'user_app/dashbord.html', 
-                  {'jobs': jobs,
-                   'applied_job' : applied_job,
-                   'applied_count' : applied_count,
-                   'profile' : profile,
-                    'completion' : completion,
-                    'completion_class' : completion_class,
-                    'saved_job_ids':saved_job_ids
-                })
+        profile = None
 
+    # Fetch jobs and related objects
+    jobs = JobDetails.objects.all().select_related('can_des', 'job_des', 'comm')
+
+    # Handle saved jobs safely
+    saved_job_ids = []
+    if hasattr(request.user, 'saved_jobs'):
+        saved_job_ids = request.user.saved_jobs.values_list('job_id', flat=True)
+
+    # Fetch applied jobs
+    applied_job = JobApplication.objects.filter(user=request.user).select_related('job')
+    applied_count = applied_job.count()
+
+    # Handle completion safely
+    completion = 0
+    if profile and hasattr(profile, 'profile_completed'):
+        completion = profile.profile_completed()
+
+    completion_class = f"w-{round(completion / 5) * 5}"
+
+    return render(request, 'user_app/dashbord.html', {
+        'jobs': jobs,
+        'applied_job': applied_job,
+        'applied_count': applied_count,
+        'profile': profile,
+        'completion': completion,
+        'completion_class': completion_class,
+        'saved_job_ids': saved_job_ids,
+    })
 
 def job_info(request,job_id):
 
