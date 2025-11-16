@@ -2,15 +2,27 @@ import os
 from django.http import JsonResponse
 from django.shortcuts import render
 from openai import OpenAI
+from dotenv import load_dotenv
 
-client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+# Load .env if it exists (local development)
+load_dotenv()
+
+# Get API key from environment
+OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
+if not OPENAI_API_KEY:
+    raise ValueError("OPENAI_API_KEY not found in environment variables!")
+
+# Initialize OpenAI client
+client = OpenAI(api_key=OPENAI_API_KEY)
+
 
 def chatbot_page(request):
     return render(request, "chatbot_app/chatbot.html")
 
+
 def simple_chat(request):
     if request.method == "POST":
-        user_message = request.POST.get("message", "")
+        user_message = request.POST.get("message", "").strip()
 
         if not user_message:
             return JsonResponse({"error": "Message is required"}, status=400)
@@ -21,8 +33,11 @@ def simple_chat(request):
                 input=user_message
             )
 
-            # Extract reply
-            reply = response.output[0].content[0].text
+            # Extract reply safely
+            try:
+                reply = response.output[0].content[0].text
+            except (IndexError, AttributeError):
+                reply = "Sorry, I could not understand the response."
 
             return JsonResponse({"reply": reply})
 
