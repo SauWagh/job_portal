@@ -368,7 +368,7 @@
                                style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
                       {% else %}
                           
-                          <img src="{% static 'images/user.png' %}" 
+                          <img src="{% static 'job_app/images/user.png' %}" 
                                alt="Profile"
                                style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
                       {% endif %}
@@ -388,7 +388,7 @@
             {% if profile.profile_picture %}
                 <img src="{{ profile.profile_picture.url }}"  id = "profileToggleMobile"  class="rounded-circle mb-3 profile-toggle-btn" alt="Profile Picture"  style="position: relative; left: -47%; width: 17%; height: 17%;">
             {% else %}
-                <img src="{% static 'images/profile-picture.png' %}"  id = "profileToggleMobile" class="profile-toggle-btn" alt="" style="width: 27%; position: relative; left: -47%;" >
+                <img src="{% static 'job_app/images/profile-picture.png' %}"  id = "profileToggleMobile" class="profile-toggle-btn" alt="" style="width: 27%; position: relative; left: -47%;" >
             {% endif %}
 
     <div style="display: flex; width: 100%; min-height: 100vh;" class="profile">
@@ -401,7 +401,7 @@
             {% if profile.profile_picture %}
                 <img src="{{ profile.profile_picture.url }}"class="rounded-circle mb-3" alt="Profile Picture" height="150" width="150" style="position: relative; left: 14%; border: 3px solid white;">
             {% else %}
-                <img src="{% static 'images/profile-picture.png' %}" alt="" style="width: 75%; position: relative; left: 14%; border: 3px solid white; border-radius: 100%;">
+                <img src="{% static 'job_app/images/profile-picture.png' %}" alt="" style="width: 75%; position: relative; left: 14%; border: 3px solid white; border-radius: 100%;">
             {% endif %}
 
             
@@ -473,9 +473,9 @@
         data-remove-url="{% url 'remove_job' job.id %}"
         data-saved="{% if job.id in saved_job_ids %}true{% else %}false{% endif %}" style="    position:absolute; left: 80%; top: 84%;">
     {% if job.id in saved_job_ids %}
-        <img src="{% static 'images/unsave.png' %}" class="save-icon" alt="Saved" style="width: 26px; height: 28px; " class="unsave" >
+        <img src="{% static 'job_app/images/unsave.png' %}" class="save-icon" alt="Saved" style="width: 26px; height: 28px; " class="unsave" >
     {% else %}
-        <img src="{% static 'images/save.png' %}" class="save-icon" alt="Save" style="width: 26px; height: 27px;" class="save">
+        <img src="{% static 'job_app/images/save.png' %}" class="save-icon" alt="Save" style="width: 26px; height: 27px;" class="save">
     {% endif %}
 </button>
 
@@ -487,7 +487,7 @@
 
 
             <div class="create-resume">
-                <img src="{% static 'images/resp.gif' %}" alt="">
+                <img src="{% static 'job_app/images/resp.gif' %}" alt="">
                 <div class="text-overlay">
                     <h4>Build your resume with Us</h4>    
                     </p>
@@ -505,7 +505,7 @@
             </div>
 
             <div class="work-people create-resume community" style="height: 45%;">
-                <img src="{% static 'images/work_p.gif' %}" alt="" style="bottom: 3.7%;">
+                <img src="{% static 'job_app/images/work_p.gif' %}" alt="" style="bottom: 3.7%;">
             <div class="community-points">
                 <ul>
                     <li>📝 Start new discussions on resumes, interviews, and job search</li>
@@ -549,17 +549,17 @@
         <!-- Ads Section -->
         <div class="add" style="flex: 0.8; background:#2c2c2c; padding:20px; box-sizing:border-box;">
             <h2 style="text-align: center; font-size: 22px; font-weight: bold;">Sponsor Advertisements</h2>
-            <img src="{% static 'images/ad.gif' %}" alt="My GIF" width="200">
+            <img src="{% static 'job_app/images/ad.gif' %}" alt="My GIF" width="200">
             <br>
             <br>
             <br>
             <br>
-            <img src="{% static 'images/ad2.gif' %}" alt="My GIF" width="200px">
+            <img src="{% static 'job_app/images/ad2.gif' %}" alt="My GIF" width="200px">
             <br>
             <br>
             <br>
             <br>
-            <img src="{% static 'images/ad3.gif' %}" alt="My GIF" width="200px" height="300px">
+            <img src="{% static 'job_app/images/ad3.gif' %}" alt="My GIF" width="200px" height="300px">
             
         </div>
         

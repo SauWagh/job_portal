@@ -103,7 +103,7 @@
                                style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
                       {% else %}
                           
-                          <img src="{% static 'images/user.png' %}" 
+                          <img src="{% static 'job_app/images/user.png' %}" 
                                alt="Profile"
                                style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
                       {% endif %}
@@ -132,7 +132,7 @@
                         <img src="{{ profile.profile_picture.url }}?{{ profile.profile_picture.updated_at.timestamp }}" alt="Profile Picture"
                              class="rounded-circle mb-3 profile-pic" width="150" height="150" style="position: absolute; left: 75%; top: 2%; border: 3px solid black;">
                     {% else %}
-                        <img src="{% static 'images/profile-picture.png' %}" alt="Default Avatar"
+                        <img src="{% static 'job_app/images/profile-picture.png' %}" alt="Default Avatar"
                              class="rounded-circle mb-3 profile-pic" width="150" height="150" style="position: absolute; left: 75%; top: 2%; border: 3px solid black;">
                     {% endif %}
 

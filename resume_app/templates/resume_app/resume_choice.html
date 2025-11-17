@@ -60,7 +60,7 @@
                                style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
                       {% else %}
                           
-                          <img src="{% static 'images/user.png' %}" 
+                          <img src="{% static 'job_app/images/user.png' %}" 
                                alt="Profile"
                                style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
                       {% endif %}
@@ -79,13 +79,13 @@
     <div class="container res-c"> 
         <div class="panel">
 <a href="{% url 'resume_preview' resume.id 1 %}">
-    <img src="{% static 'images/res1.jpg' %}" alt="Resume 1" width="200px">
+    <img src="{% static 'job_app/images/res1.jpg' %}" alt="Resume 1" width="200px">
 </a>
 <a href="{% url 'resume_preview' resume.id 2 %}">
-    <img src="{% static 'images/res2.webp' %}" alt="Resume 2" width="200px" height="285px">
+    <img src="{% static 'job_app/images/res2.webp' %}" alt="Resume 2" width="200px" height="285px">
 </a>
 <a href="{% url 'resume_preview' resume.id 3 %}">
-    <img src="{% static 'images/res3.jpg' %}" alt="Resume 3" width="200px">
+    <img src="{% static 'job_app/images/res3.jpg' %}" alt="Resume 3" width="200px">
 </a>
         </div>
     </div>

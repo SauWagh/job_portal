@@ -88,7 +88,7 @@
                                style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
                       {% else %}
                           
-                          <img src="{% static 'images/user.png' %}" 
+                          <img src="{% static 'job_app/images/user.png' %}" 
                                alt="Profile"
                                style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
                       {% endif %}
@@ -132,9 +132,9 @@
         data-remove-url="{% url 'remove_job' job.id %}"
         data-saved="{% if job.id in saved_job_ids %}true{% else %}false{% endif %}" style="    position:absolute; left: 60.5%; bottom: 600px; ">
     {% if job.id in saved_job_ids %}
-        <img src="{% static 'images/unsave.png' %}" class="save-icon" alt="Saved" style="width: 26px; height: 28px;" >
+        <img src="{% static 'job_app/images/unsave.png' %}" class="save-icon" alt="Saved" style="width: 26px; height: 28px;" >
     {% else %}
-        <img src="{% static 'images/save.png' %}" class="save-icon" alt="Save" style="width: 26px; height: 28px;">
+        <img src="{% static 'job_app/images/save.png' %}" class="save-icon" alt="Save" style="width: 26px; height: 28px;">
     {% endif %}
 </button>
 </div>

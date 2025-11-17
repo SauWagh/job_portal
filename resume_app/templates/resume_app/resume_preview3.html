@@ -28,7 +28,7 @@
             {% if resume.profile_pic %}
                 <img src="{{ resume.profile_pic.url }}?{{ profile.updated_at.timestamp }}" alt="Profile Photo">
             {% else %}
-                <img src="{% static 'images/profile.jpg' %}" alt="Profile Photo">
+                <img src="{% static 'job_app/images/profile.jpg' %}" alt="Profile Photo">
             {% endif %}
         </div>
         <h1 class="cv-name">{{ resume.full_name }}</h1>

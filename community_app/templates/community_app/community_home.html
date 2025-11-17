@@ -7,8 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'css/community_home.css' %}">
+    <link rel="stylesheet" href="{% static 'job_app/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'job_app/css/community_home.css' %}">
     <title>Community</title>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -90,7 +90,7 @@
                                style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
                       {% else %}
                           
-                          <img src="{% static 'images/user.png' %}" 
+                          <img src="{% static 'job_app/images/user.png' %}" 
                                alt="Profile"
                                style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
                       {% endif %}
@@ -125,7 +125,7 @@
                             <img src="{{ post.user.detail.profile_picture.url }}" 
                                  alt="{{ post.user.username }}" class="profile-pic">
                         {% else %}
-                            <img src="{% static 'images/user.png' %}" 
+                            <img src="{% static 'job_app/images/user.png' %}" 
                                  alt="Default Avatar" class="profile-pic">
                         {% endif %}
                     </a>

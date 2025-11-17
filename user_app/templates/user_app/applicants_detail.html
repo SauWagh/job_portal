@@ -242,7 +242,7 @@
                                style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
                       {% else %}
                           
-                          <img src="{% static 'images/user.png' %}" 
+                          <img src="{% static 'job_app/images/user.png' %}" 
                                alt="Profile"
                                style="width:40px; height:40px; border-radius:50%; background:white; padding:5px;">
                       {% endif %}
@@ -263,7 +263,7 @@
         {% if applicant_profile and applicant_profile.profile_picture %}
             <img src="{{ applicant_profile.profile_picture.url }}" alt="Profile Picture" class="profile-pic" style="border: 2px solid white;">
         {% else %}
-            <img src="{% static 'images/profile-picture.png' %}" alt="Default Avatar" class="profile-pic">
+            <img src="{% static 'job_app/images/profile-picture.png' %}" alt="Default Avatar" class="profile-pic">
         {% endif %}
 
         <h2>{{ applicant_profile.full_name }}</h2>
