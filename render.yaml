@@ -6,10 +6,3 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn job_portal.wsgi:application
-    envVars:
-      - key: DJANGO_SECRET_KEY
-        value: "your-django-secret-key"
-      - key: DEBUG
-        value: "False"
-      - key: OPENAI_API_KEY
-        value: "sk-xxxx-your-key"

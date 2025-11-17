@@ -8,3 +8,4 @@ Pillow
 python-dotenv
 django-crispy-forms
 crispy-bootstrap4
+whitenoise
