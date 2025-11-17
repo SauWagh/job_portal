@@ -1,0 +1,39 @@
+.create-resume {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+
+.create-resume img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 20px;
+    text-shadow: 2px 2px 5px black;
+}
+.job-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.see_all {
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.see_all:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+

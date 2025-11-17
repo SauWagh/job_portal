@@ -1,0 +1,197 @@
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      margin: 20px;
+    }
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    margin-top: 10px;
+    border: 1px solid white;
+    border-radius: 5px;
+}
+    #toggle-panel {
+      display: none;
+    }
+
+
+    .open-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 20px;
+      background: transparent;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      position: absolute;
+      left: 0;
+      top: 50px;
+    }
+
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      transition: 0.3s;
+      z-index: 1000;
+
+    }
+
+
+    .side-panel {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100%;
+      background: #242424;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.2);
+      transition: 0.3s;
+      padding: 20px;
+      z-index: 1100;
+            
+      overflow-y: scroll;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .side-panel::-webkit-scrollbar{
+        display: none;
+    }
+
+    #toggle-panel:checked ~ .overlay {
+      width: 100%;
+    }
+
+    #toggle-panel:checked ~ .side-panel {
+      left: 0;
+    }
+
+    .close-btn {
+      display: block;
+      margin-bottom: 20px;
+      text-align: right;
+    }
+
+    .close-btn label {
+      cursor: pointer;
+      font-size: 20px;
+    }
+    .filters {
+      width: 280px;
+      padding: 15px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      list-style: none;
+      padding-left: 10px;
+      margin: 0;
+    }
+    details {
+      border-bottom: 1px solid #e0e0e0;
+      padding: 8px 0;
+    }
+    summary {
+      font-size: 16px;
+      font-weight: 600;
+      color: #ffffff;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    summary::after {
+      content: "▶";
+      font-size: 12px;
+      transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+      transform: rotate(90deg);
+    }
+    ul {
+      list-style: none;
+      margin: 8px 0 0;
+      padding: 0 0 0 10px;
+    }
+
+    ul li {
+      margin: 6px 0;
+    }
+
+label {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  gap: 4px; 
+  cursor: pointer;
+  font-size: 14px;
+  color: #ffffff;
+  border-bottom: 1px solid;
+}
+
+
+input[type="checkbox"] {
+    margin-right: 0px;
+}
+.filter li {
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0; 
+}
+
+.filter label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.filter input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #00ffb7;
+}
+.job-card.active {
+
+background: radial-gradient(circle at 20% 20%, #0d1b2a, transparent),
+            radial-gradient(circle at 80% 80%, #1b263b, transparent),
+            radial-gradient(circle at 50% 50%, #415a77, transparent);
+
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    border: 3px solid #ffffff;
+    border-radius: 25px;
+}
+.job-tags {
+  display: flex;             /* Arrange tags in a row */
+  flex-wrap: wrap;           /* Wrap tags to next line if needed */
+  justify-content: center;   /* Center tags horizontally */
+  gap: 8px 10px;             /* Space between tags (row & column) */
+  margin-top: 10px;
+}
+
+.job-tags .badge {
+  background-color: #444;    /* Darker background for tags */
+  color: #fff;               /* White text */
+  padding: 6px 12px;         /* Some padding */
+  border-radius: 20px;       /* Rounded pill shape */
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.job-tags .badge:hover {
+  background-color: #00bfff;  /* Highlight color on hover */
+  color: #000;
+  transform: scale(1.05);    /* Slight pop effect */
+}

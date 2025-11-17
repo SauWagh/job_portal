@@ -1,0 +1,131 @@
+.edit-wrapper {
+    position: relative;
+    display: inline-block;
+    left: 88%;
+    bottom: 187px;
+}
+
+.edit-tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: rgba(0,0,0,0.8);
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    border-radius: 6px;
+
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.edit-btn:hover .edit-tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.edit-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.2s ease;
+}
+
+.edit-btn:hover .edit-icon {
+    transform: scale(1.2);
+}
+.hero{
+    display: flex;
+}
+.aplicant-detail{
+    padding: 22px;
+    width: 30%;
+    height: 650px;
+    color: white;
+    border-radius: 12px;
+    border: 2px solid;
+    background: rgb(18,18,18);
+}
+.aplicant-detail input{
+    width: 100%;
+    height: 39px;
+    padding: 10px 100px 10px 15px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 16px;
+    background: linear-gradient(to right, #efafaf 0%, #dec5c5 40%, #b1c4ff 60%, #4d79ff 100%);
+    color: #000000;
+}
+.aplicant-detail button{
+    position: relative;
+    bottom: 18px;
+    left: 75%;
+    transform: translateY(-50%);
+    border: none;
+    background: rgba(190, 190, 192, 0.2);
+    color: white;
+    padding: 0 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    height: 39px;
+}
+.aplicant-detail button:hover{
+      background-color: rgba(108, 108, 108, 0.6);
+  box-shadow: 1px 2px 3px rgb(55, 55, 55);
+}
+.aplicant-detail h4{
+    text-align: center;
+    border-bottom: 2px solid;
+    padding-bottom: 15px;
+}
+
+.applicants-list {
+  list-style: none;
+  counter-reset: applicant-counter;
+  padding: 0;
+  margin: 0;
+  background-color: #252525;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #fff;
+  font-size: 15px;
+}
+
+.applicants-list li:last-child {
+  border-bottom: none;
+}
+.applicants-list li::before {
+  content: counter(applicant-counter) "."; 
+  font-weight: 800;
+  color: #ffffff; 
+  margin-right: 10px;
+}
+.applicants-list li {
+counter-increment: applicant-counter;
+  height: 50px;
+  padding: 10px 15px;
+  margin-bottom: 0px;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  color: #fff; 
+}
+
+.applicants-list li:hover {
+  content: counter(applicant-counter);
+  background: linear-gradient(135deg, #a5c6bd, #6b7880, #6e5d76, rgb(119, 91, 119),rgb(116, 76, 76));
+  transform: translateX(6px);
+  cursor: pointer;
+}
+.applicants-list li a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.applicants-list li a:hover {
+  text-decoration: none;
+}

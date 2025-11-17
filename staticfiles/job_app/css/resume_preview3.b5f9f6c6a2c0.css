@@ -1,0 +1,130 @@
+/* ==== General Layout ==== */
+body {
+    font-family: Arial, sans-serif;
+    background: #000000;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.cv-container {
+    display: flex;
+    width: 80%;
+    margin: 30px auto;
+    background: #fff;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+/* ==== Sidebar ==== */
+.cv-sidebar {
+    background: #2e3c50;
+    color: #fff;
+    width: 30%;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.cv-profile-pic img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.cv-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+}
+
+.cv-title {
+    font-size: 16px;
+    font-weight: normal;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.cv-contact p {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+/* ==== Main Content ==== */
+.cv-main {
+    width: 70%;
+    padding: 40px;
+}
+
+.cv-section {
+    margin-bottom: 35px;
+}
+
+.cv-heading {
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+}
+
+/* ==== Experience / Education ==== */
+.cv-item {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.cv-item-left {
+    width: 30%;
+    font-size: 14px;
+    color: #666;
+}
+
+.cv-item-right {
+    width: 70%;
+}
+
+.cv-item-right h4 {
+    font-size: 16px;
+    margin: 0;
+    font-weight: bold;
+    color: #222;
+}
+
+.cv-item-right p {
+    margin: 3px 0;
+    font-size: 14px;
+    line-height: 1.4em;
+}
+
+/* ==== Skills Section ==== */
+.cv-skills {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.cv-skill {
+    margin-bottom: 10px;
+}
+
+.cv-skill span {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.cv-skill-bar {
+    background: #eee;
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.cv-skill-progress {
+    background: #2e3c50;
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease-in-out;
+}
