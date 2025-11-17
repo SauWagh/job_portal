@@ -13,6 +13,7 @@ from dotenv import load_dotenv
 from pathlib import Path
 import os
 from openai import OpenAI  
+import dj_database_url 
 
 load_dotenv() 
 
