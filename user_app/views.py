@@ -88,19 +88,15 @@ from .models import UserDetail
 
 @login_required
 def user_profile(request):
-    profile = None
-    if request.user.is_authenticated:
-        profile = getattr(request.user,'detail',None)
     profile, created = UserDetail.objects.get_or_create(user=request.user)
 
     if created:
         return redirect('edit_profile')
-    
-
 
     return render(request, 'user_app/user_profile.html', {
         'profile': profile
-        })
+    })
+
 
 
 
