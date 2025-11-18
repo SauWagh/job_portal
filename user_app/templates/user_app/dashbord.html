@@ -361,7 +361,7 @@
           {% if user.is_authenticated %}
               <div class="profile-icon">
                   <a href="{% url 'dashboard' %}">
-                      {% if profile and profile.profile_picture %}
+                      {% if profile and profile.profile_picture.url %}
                           <img src="{{ profile.profile_picture }}" 
                                alt="Profile Picture"
                                class="rounded-circle"
@@ -386,7 +386,7 @@
 <body style="margin:0; font-family: Arial, sans-serif; background:#111; color:white; padding:0% ; padding-top: 5.5%;">
 
             {% if profile.profile_picture %}
-                <img src="{{ profile.profile_picture }}"  id = "profileToggleMobile"  class="rounded-circle mb-3 profile-toggle-btn" alt="Profile Picture"  style="position: relative; left: -47%; width: 17%; height: 17%;">
+                <img src="{{ profile.profile_picture.url }}"  id = "profileToggleMobile"  class="rounded-circle mb-3 profile-toggle-btn" alt="Profile Picture"  style="position: relative; left: -47%; width: 17%; height: 17%;">
             {% else %}
                 <img src="{% static 'job_app/images/profile-picture.png' %}"  id = "profileToggleMobile" class="profile-toggle-btn" alt="" style="width: 27%; position: relative; left: -47%;" >
             {% endif %}
