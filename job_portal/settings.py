@@ -71,10 +71,21 @@ INSTALLED_APPS = [
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', ''),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY', ''),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET', ''),
 }
+
+# Optional safety check
+if not all(CLOUDINARY_STORAGE.values()):
+    print("WARNING: One or more Cloudinary environment variables are missing!")
+
+cloudinary.config(
+    cloud_name=CLOUDINARY_STORAGE['CLOUD_NAME'],
+    api_key=CLOUDINARY_STORAGE['API_KEY'],
+    api_secret=CLOUDINARY_STORAGE['API_SECRET']
+)
+# ----------------------
 
 
 MIDDLEWARE = [
