@@ -19,7 +19,9 @@ import cloudinary.uploader
 import cloudinary.api
 import cloudinary_storage
 
-load_dotenv() 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv(dotenv_path=BASE_DIR / ".env")
 
 # Django settings from environment
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
@@ -69,6 +71,7 @@ INSTALLED_APPS = [
 ]
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+print("DEBUG TEST:", os.environ.get('CLOUDINARY_CLOUD_NAME'))
 
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME', ''),

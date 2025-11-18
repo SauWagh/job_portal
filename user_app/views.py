@@ -49,21 +49,30 @@ def user(request):
 @login_required
 def edit_profile(request):
     try:
-        profile = request.user.detail  # get existing profile if exists
+        profile = request.user.detail
     except UserDetail.DoesNotExist:
-        profile = None  # no profile yet
+        profile = None
 
     if request.method == "POST":
         form = UserForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
             user_detail = form.save(commit=False)
-            user_detail.user = request.user  # link profile to logged in user
+            user_detail.user = request.user
+
+            # 🔥 IMPORTANT: Save image if uploaded
+            if "profile_picture" in request.FILES:
+                user_detail.profile_picture = request.FILES["profile_picture"]
+
             user_detail.save()
-            return redirect('user_profile')
+            return redirect("user_profile")
+
     else:
         form = UserForm(instance=profile)
 
-    return render(request, 'user_app/edit_profile.html', {'form': form})
+    return render(request, "user_app/edit_profile.html", {
+        "form": form
+    })
+
 
 
 # def user_profile(request, id):
