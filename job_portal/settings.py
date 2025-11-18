@@ -21,7 +21,7 @@ import cloudinary_storage
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-load_dotenv(dotenv_path=BASE_DIR / ".env")
+# load_dotenv(dotenv_path=BASE_DIR / ".env")
 
 # Django settings from environment
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
