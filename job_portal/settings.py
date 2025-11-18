@@ -14,6 +14,10 @@ from pathlib import Path
 import os
 from openai import OpenAI  
 import dj_database_url 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+import cloudinary_storage
 
 load_dotenv() 
 
@@ -175,13 +179,13 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/list/'
+# LOGIN_REDIRECT_URL = '/list/'
 
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'job_app.CustomUser'
 
