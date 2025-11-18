@@ -6,7 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('profile/', user_profile, name='user_profile'),
     path('profile/edit/', edit_profile, name='edit_profile'),
-    path('user/',user,name='user'),
+    # path('user/',user,name='user'),
     path('dashboard/',user_dashboard, name='dashboard'),
     path('job_info/<int:job_id>',job_info, name='job_info'),
     path('apply/<int:job_id>/', apply_job, name='apply_job'),
