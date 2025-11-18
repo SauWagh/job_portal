@@ -10,3 +10,5 @@ crispy-bootstrap4
 whitenoise
 dj-database-url
 psycopg==3.2.0
+cloudinary
+django-cloudinary-storage

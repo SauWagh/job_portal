@@ -60,7 +60,17 @@ INSTALLED_APPS = [
     'crispy_forms',
     'community_app',
     'crispy_bootstrap4',
+    'cloudinary',
+    'cloudinary_storage',
 ]
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'your_cloud_name',
+    'API_KEY': 'your_api_key',
+    'API_SECRET': 'your_api_secret',
+}
 
 
 MIDDLEWARE = [
