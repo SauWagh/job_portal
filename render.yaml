@@ -6,5 +6,5 @@ services:
     plan: free
 
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn myproject.wsgi:application
+    startCommand: gunicorn job_potal.wsgi:application
     postDeploy: python manage.py migrate
