@@ -6,8 +6,4 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: gunicorn job_portal.wsgi:application
-<<<<<<< HEAD
     postDeploy: python manage.py migrate
-=======
-    postDeploy: python manage.py migrate
->>>>>>> f634198 (Fix database config and update templates for Render deployment)
