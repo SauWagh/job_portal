@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+ 	from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from .models import UserDetail
@@ -88,7 +88,7 @@ from .models import UserDetail
 
 @login_required
 def user_profile(request):
-    profile, created = UserDetail.objects.get_or_create(user=request.user,)
+    profile, created = UserDetail.objects.get_or_create(user=request.user)
 
     if created:
         return redirect('edit_profile')
@@ -96,6 +96,8 @@ def user_profile(request):
     return render(request, 'user_app/user_profile.html', {
         'profile': profile
     })
+
+
 
 
 
