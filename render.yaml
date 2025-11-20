@@ -4,6 +4,7 @@ services:
     env: python
     region: oregon
     plan: free
+
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn yourprojectname.wsgi:application
+    startCommand: gunicorn myproject.wsgi:application
     postDeploy: python manage.py migrate
