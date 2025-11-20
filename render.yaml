@@ -5,5 +5,5 @@ services:
     region: oregon
     plan: free
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn job_portal.wsgi:application
+    startCommand: gunicorn yourprojectname.wsgi:application
     postDeploy: python manage.py migrate
