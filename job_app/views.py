@@ -8,8 +8,11 @@ from django.conf import settings
 from django.db.models import Q
 from user_app.models import*
 from user_app.forms import *
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-
+import traceback
+import logging
+logger = logging.getLogger(__name__)
 
 
 def home(request):
@@ -124,25 +127,40 @@ def add_job(request):
 
 
 
+
+
 def Job_list(request):
+    try:
+        profile = None
 
-    profile = None
-    if request.user.is_authenticated:
-        profile = getattr(request.user,'detail',None)
-    query = request.GET.get('q')
-    jobs = JobDetails.objects.all().select_related('can_des', 'job_des', 'comm')
+        if request.user.is_authenticated:
+            profile = getattr(request.user, 'detail', None)
 
-    if query:
-        jobs = jobs.filter(
-            Q(job_title__icontains=query) |
-            Q(category__icontains=query) |
-            Q(company_name__icontains=query) |
-            Q(job_location__icontains=query) |
-            Q(job_type__icontains=query) |
-            Q(salary__icontains=query)
-        )
+        query = request.GET.get('q')
 
-    return render(request, 'job_app/list_of_it_jobs.html', {'jobs': jobs,'profile':profile})
+        jobs = JobDetails.objects.all().select_related('can_des', 'job_des', 'comm')
+
+        if query:
+            jobs = jobs.filter(
+                Q(job_title__icontains=query) |
+                Q(category__icontains=query) |
+                Q(company_name__icontains=query) |
+                Q(job_location__icontains=query) |
+                Q(job_type__icontains=query) |
+                Q(salary__icontains=query)
+            )
+
+        return render(request, 'job_app/list_of_it_jobs.html', {
+            'jobs': jobs,
+            'profile': profile
+        })
+
+    except Exception as e:
+        logger.error("ERROR IN Job_list VIEW: %s", e)
+        print("ERROR IN Job_list VIEW:", e)
+        print(traceback.format_exc())
+        return HttpResponse("Internal Error in Job_list", status=500)
+
 
 def edit_profie_before_applying(request,job_id):
     job = get_object_or_404(JobDetails,id = job_id)
