@@ -137,7 +137,6 @@ def Job_list(request):
             profile = getattr(request.user, 'detail', None)
 
         query = request.GET.get('q')
-
         jobs = JobDetails.objects.all().select_related('can_des', 'job_des', 'comm')
 
         if query:
@@ -156,10 +155,9 @@ def Job_list(request):
         })
 
     except Exception as e:
-        logger.error("ERROR IN Job_list VIEW: %s", e)
         print("ERROR IN Job_list VIEW:", e)
-        print(traceback.format_exc())
-        return HttpResponse("Internal Error in Job_list", status=500)
+        raise
+
 
 
 def edit_profie_before_applying(request,job_id):
