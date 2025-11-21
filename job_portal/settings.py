@@ -145,15 +145,25 @@ WSGI_APPLICATION = 'job_portal.wsgi.application'
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
-    DATABASES = {
-        'default': dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
-    }
+    if DATABASE_URL.startswith("sqlite"):
+        # SQLite database (no SSL)
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.sqlite3",
+                "NAME": DATABASE_URL.replace("sqlite:///", ""),
+            }
+        }
+    else:
+        # PostgreSQL database (with SSL)
+        DATABASES = {
+            "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
+        }
 else:
-    # Fallback for local development
+    # Local development fallback
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
         }
     }
 
