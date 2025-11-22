@@ -17,7 +17,6 @@ import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
-import cloudinary_storage
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
