@@ -140,28 +140,29 @@ WSGI_APPLICATION = 'job_portal.wsgi.application'
 
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
-if DATABASE_URL:
-    if DATABASE_URL.startswith("sqlite"):
-        # SQLite database (no SSL)
+if os.environ.get("RENDER"):  
+    # Render Server
+    if DATABASE_URL and DATABASE_URL.startswith("sqlite"):
         DATABASES = {
             "default": {
                 "ENGINE": "django.db.backends.sqlite3",
-                "NAME": DATABASE_URL.replace("sqlite:///", ""),
+                "NAME": "/opt/render/project/data/db.sqlite3",
             }
         }
-    else:
-        # PostgreSQL database (with SSL)
+    elif DATABASE_URL:
         DATABASES = {
             "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
         }
+
 else:
-    # Local development fallback
+    # LOCAL DEVELOPMENT ALWAYS USES db.sqlite3
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
             "NAME": BASE_DIR / "db.sqlite3",
         }
     }
+
 
 import logging
 
@@ -216,7 +217,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [BASE_DIR / "job_app/static"]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = os.path.join(BASE_DIR / "staticfiles")
+# STATICFILES_DIRS = os.path.join[BASE_DIR / "staticfiles"]
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 # Default primary key field type

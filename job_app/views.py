@@ -130,33 +130,28 @@ def add_job(request):
 
 
 def Job_list(request):
-    try:
-        profile = None
 
-        if request.user.is_authenticated:
-            profile = getattr(request.user, 'detail', None)
+    profile = None
+    if request.user.is_authenticated:
+        profile = getattr(request.user, 'detail', None)
 
-        query = request.GET.get('q')
-        jobs = JobDetails.objects.all().select_related('can_des', 'job_des', 'comm')
+    query = request.GET.get('q')
+    jobs = JobDetails.objects.all().select_related('can_des', 'job_des', 'comm')
 
-        if query:
-            jobs = jobs.filter(
-                Q(job_title__icontains=query) |
-                Q(category__icontains=query) |
-                Q(company_name__icontains=query) |
-                Q(job_location__icontains=query) |
-                Q(job_type__icontains=query) |
-                Q(salary__icontains=query)
-            )
+    if query:
+        jobs = jobs.filter(
+            Q(job_title__icontains=query) |
+            Q(category__icontains=query) |
+            Q(company_name__icontains=query) |
+            Q(job_location__icontains=query) |
+            Q(job_type__icontains=query) |
+            Q(salary__icontains=query)
+        )
 
-        return render(request, 'job_app/list_of_it_jobs.html', {
-            'jobs': jobs,
-            'profile': profile
-        })
-
-    except Exception as e:
-        print("ERROR IN Job_list VIEW:", e)
-        raise
+    return render(request, 'job_app/list_of_it_jobs.html', {
+        'jobs': jobs,
+        'profile': profile
+    })
 
 
 
