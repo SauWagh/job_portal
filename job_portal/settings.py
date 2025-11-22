@@ -208,6 +208,12 @@ STATIC_URL = '/static/'
 # STATICFILES_DIRS = [BASE_DIR / "job_app/static"]
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+#work with local host
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static"   # or your static folder name  
+# ]
+
+# work with deployed site
 STATICFILES_DIRS = os.path.join(BASE_DIR, "staticfiles")
 
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')

@@ -330,8 +330,6 @@
 }
 }
 
-
-
 </style>
 
 
@@ -357,12 +355,12 @@
         <!-- Right Buttons -->
         <div class="form-inline my-2 my-lg-0">
           <!-- <a href="/login/" class="btn btn-outline-light mr-2">User Login</a> -->
-          <a href="/register/" class="btn btn-light">Register</a>
+          <!-- <a href="/register/" class="btn btn-light">Register</a> -->
           {% if user.is_authenticated %}
               <div class="profile-icon">
                   <a href="{% url 'dashboard' %}">
                       {% if profile and profile.profile_picture.url %}
-                          <img src="{{ profile.profile_picture }}" 
+                          <img src="{{ profile.profile_picture.url }}" 
                                alt="Profile Picture"
                                class="rounded-circle"
                                style="width:50px; height:50px; object-fit: cover; border: 2px solid #fff;">
@@ -375,6 +373,7 @@
                   </a>
               </div>
           {% else %}
+          <a href="/register/" class="btn btn-light" st>Register</a>
               <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#loginModal">
                   Login
               </button>
