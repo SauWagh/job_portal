@@ -19,9 +19,6 @@ body.bg-light {
     background-color: #000 !important;
 }
 
-.image{ 
-  background-image: url('/static/images/7822.jpg');
-}
       .navbar .nav-link {
         position: relative;
         color: #fff !important;
