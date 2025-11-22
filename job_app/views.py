@@ -147,7 +147,6 @@ def Job_list(request):
             Q(job_type__icontains=query) |
             Q(salary__icontains=query)
         )
-
     return render(request, 'job_app/list_of_it_jobs.html', {
         'jobs': jobs,
         'profile': profile

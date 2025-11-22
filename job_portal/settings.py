@@ -138,24 +138,14 @@ WSGI_APPLICATION = 'job_portal.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import dj_database_url
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
-if os.environ.get("RENDER"):  
-    # Render Server
-    if DATABASE_URL and DATABASE_URL.startswith("sqlite"):
-        DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.sqlite3",
-                "NAME": "/opt/render/project/data/db.sqlite3",
-            }
-        }
-    elif DATABASE_URL:
-        DATABASES = {
-            "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
-        }
-
+if DATABASE_URL:
+    DATABASES = {
+        "default": dj_database_url.parse(DATABASE_URL, conn_max_age=600, ssl_require=True)
+    }
 else:
-    # LOCAL DEVELOPMENT ALWAYS USES db.sqlite3
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
